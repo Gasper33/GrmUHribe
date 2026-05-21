@@ -1,0 +1,2911 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRM U HRIBE — Tvoja idealna pot v gore</title>
+<link rel="icon" type="image/png" href="/static/logo.png">
+<link rel="apple-touch-icon" href="/static/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+:root {
+  /* ── LIGHT THEME (privzeto) ── */
+  --pescan:    #CEB98E;
+  --oker:      #E2C276;
+  --gozdna:    #4E6253;
+  --smetanova: #F6F8F0;
+  --zajbljeva: #8E9B7E;
+  --kaki:      #DDDBC4;
+  --rjava:     #9D865E;
+  --olivna:    #B1B88A;
+  --txt:       #1e2118;
+  --txt2:      #3d3d30;
+  --txt3:      #7a7060;
+  --white:     #ffffff;
+  --zlata:     #E2C276;
+
+  /* semantične barve, ki se razlikujejo med temama */
+  --bg:           var(--smetanova);  /* ozadje strani */
+  --card-bg:      var(--white);      /* ozadje kartic */
+  --card-border:  var(--kaki);       /* robovi kartic */
+  --input-bg:     var(--smetanova);  /* ozadje input polj */
+  --input-border: var(--kaki);
+  --fade-to:      var(--white);      /* gradient fade pri collapsible */
+  --shadow:       rgba(0,0,0,.06);
+  --shadow-hover: rgba(78,98,83,.12);
+  --nav-bg:       var(--gozdna);
+  --nav-txt:      var(--olivna);
+  --nav-txt-hov:  var(--oker);
+  --accent:       var(--gozdna);
+  --accent-txt:   var(--smetanova);
+  --hero-bg:      var(--gozdna);
+  --divider:      var(--kaki);
+  --detail-bg:    var(--smetanova);  /* ozadje detail-stat in rating-box */
+}
+
+[data-theme="dark"] {
+  /* ── DARK THEME — popravljeni kontrasti ── */
+  --smetanova: #15181a;   /* ozadje strani */
+  --white:     #1f2426;   /* ozadje kartic */
+  --kaki:      #3a4245;   /* robovi, divider — dvignjeni za vidnost */
+  --gozdna:    #4a6655;   /* navigacija, accenti — svetlejši za kontrast */
+  --oker:      #F0CA80;   /* brand barva — bolj živa v dark */
+  --olivna:    #c8d4b8;   /* nav linki — bistveno svetlejši */
+  --zajbljeva: #b0be9e;   /* sekundarni teksti — svetlejši */
+  --rjava:     #d4b584;   /* label barva — dvignjena */
+  --pescan:    #cdb888;   /* akcenti */
+  --txt:       #f0f2eb;   /* osnovno besedilo — skoraj belo */
+  --txt2:      #dde0d6;   /* sekundarno besedilo — svetlejše */
+  --txt3:      #adb3a4;   /* tercialno besedilo — dvignjeno */
+  --zlata:     #F0CA80;   /* zvezdice */
+
+  --bg:           var(--smetanova);
+  --card-bg:      var(--white);
+  --card-border:  var(--kaki);
+  --input-bg:     #262c2e;
+  --input-border: #4a5255;
+  --fade-to:      var(--card-bg);
+  --shadow:       rgba(0,0,0,.35);
+  --shadow-hover: rgba(0,0,0,.5);
+  --nav-bg:       #0f1214;
+  --nav-txt:      var(--olivna);
+  --nav-txt-hov:  var(--oker);
+  --accent:       #5b7463;
+  --accent-txt:   #f0f2eb;
+  --hero-bg:      #1a2520;
+  --divider:      #3a4245;
+  --detail-bg:    #262c2e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);font-size:15px;line-height:1.75;transition:background .25s,color .25s}
+
+/* NAV */
+nav{background:var(--nav-bg);padding:0 5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:2px solid rgba(226,194,118,0.3);transition:background .25s}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--oker);padding:.55rem 0;letter-spacing:-0.02em;cursor:pointer;display:flex;align-items:center;gap:.7rem}
+.nav-logo-img{width:42px;height:42px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+.nav-logo em{font-style:italic}
+.nav-logo span{font-style:italic}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{display:block;padding:.9rem 1rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--olivna);border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--oker);border-bottom-color:var(--oker)}
+.nav-user{display:flex;align-items:center;gap:.7rem}
+.btn-nav{font-size:.72rem;font-weight:700;letter-spacing:.08em;padding:.45rem 1.1rem;border-radius:100px;cursor:pointer;transition:all .2s;border:none}
+.btn-login{background:transparent;border:1px solid rgba(226,194,118,0.5);color:var(--oker)}
+.btn-login:hover{background:rgba(226,194,118,0.1)}
+.btn-register{background:var(--oker);color:var(--txt)}
+.btn-register:hover{background:#d4b568}
+.btn-theme{background:transparent;border:1px solid rgba(226,194,118,0.35);color:var(--oker);padding:.35rem .6rem;display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;font-size:.95rem;vertical-align:middle;border-radius:6px}
+.btn-theme:hover{background:rgba(226,194,118,0.12)}
+/* Dark mode gumb v nav-links — poravnan z ostalimi linki */
+.nav-links li:has(.btn-theme){display:flex;align-items:center;padding:0 .5rem}
+
+/* VIEWS */
+.view{display:none}
+.view.active{display:block}
+
+/* ── HERO ── */
+#view-home .hero{background:linear-gradient(180deg,#3a4d40 0%,#4E6253 45%,#5d7263 75%,#6b8060 100%);padding:5rem 5rem 4rem;position:relative;overflow:hidden;min-height:540px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(226,194,118,0.08) 0%,transparent 60%);pointer-events:none}
+.hero-mountains{position:absolute;bottom:0;left:0;right:0;height:65%;pointer-events:none;display:block}
+.hero-mountains svg{width:100%;height:100%;display:block}
+.hero-inner{position:relative;z-index:2;max-width:680px}
+.hero-logo{width:110px;height:110px;object-fit:contain;display:block;margin-bottom:1rem;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
+
+/* dark theme: hladnejše, temnejše nebo + gore */
+[data-theme="dark"] #view-home .hero{background:linear-gradient(180deg,#0f1814 0%,#1a2520 45%,#243029 75%,#2c3a31 100%)}
+[data-theme="dark"] .hero h1{color:#f0f2eb}
+[data-theme="dark"] .hero h1 em{color:var(--oker)}
+[data-theme="dark"] .hero p{color:#c8d4b8}
+[data-theme="dark"] .chip{color:#dde4cc;border-color:rgba(255,255,255,.35)}
+[data-theme="dark"] .chip.a{color:#1a1e14;background:var(--oker);border-color:var(--oker)}
+[data-theme="dark"] .hero-mountains svg path:nth-child(1){fill:#3d4f44}
+[data-theme="dark"] .hero-mountains svg path:nth-child(2){fill:#2f3f37}
+[data-theme="dark"] .hero-mountains svg path:nth-child(3){fill:#243029}
+[data-theme="dark"] .hero-mountains svg path:nth-child(4){fill:#1a2520}
+[data-theme="dark"] .hero-mountains svg path:nth-child(5){fill:#0d1310}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:700;color:var(--smetanova);line-height:.95;letter-spacing:-.03em;margin-bottom:.8rem}
+.hero h1 em{font-style:italic;color:var(--oker)}
+.hero p{font-size:1rem;color:var(--olivna);font-weight:300;max-width:480px;margin-bottom:2rem}
+.hero-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+/* Mobilni dropdown meni */
+.mob-menu-wrap{display:none;position:relative}
+.mob-menu-btn{background:transparent;border:1.5px solid rgba(226,194,118,0.4);border-radius:20px;min-width:38px;height:38px;padding:0 .6rem;color:var(--oker);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.3rem}
+.mob-menu-dropdown{display:none;position:absolute;right:0;top:calc(100% + .5rem);background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:12px;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:500;overflow:hidden}
+.mob-menu-dropdown.open{display:block}
+.mob-menu-dropdown button{display:block;width:100%;text-align:left;padding:.85rem 1.1rem;background:transparent;border:none;color:var(--txt);font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer;transition:background .15s}
+.mob-menu-dropdown button:hover{background:rgba(255,255,255,.06)}
+.mob-menu-divider{height:1px;background:var(--divider);margin:.2rem 0}
+.mob-menu-login,.mob-menu-register{color:var(--olivna) !important}
+.mob-menu-odjava{color:var(--rjava) !important}
+.hero-search-bar{display:none}
+.hero-cta-btns{display:none}
+.hero-theme-btn{display:none}
+.hero-theme-row{display:none}
+.chip{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .8rem;border-radius:100px;border:1px solid rgba(255,255,255,.2);color:var(--kaki)}
+.chip.a{background:var(--oker);color:var(--txt);border-color:var(--oker)}
+
+/* FORM CARD */
+.form-section{max-width:1100px;margin:0 auto;padding:3rem 3rem 5rem}
+.form-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;box-shadow:0 4px 24px var(--shadow)}
+.form-header{background:var(--gozdna);padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.form-header h2{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--oker);font-weight:700}
+.form-header p{font-size:.78rem;color:var(--olivna)}
+.form-body{padding:2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rjava)}
+.slider-row{display:flex;align-items:center;gap:.7rem}
+.slider-row input{flex:1;min-width:0}     /* min-width:0 dovoljuje flex da skrči slider */
+.slider-val{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--gozdna);min-width:5rem;text-align:left;white-space:nowrap;flex-shrink:0}
+.dual-slider{display:flex;flex-direction:column;gap:.7rem;width:100%}
+.slider-tag{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rjava);min-width:1.6rem;text-align:right;flex-shrink:0}
+/* form-group z dual-slider naj zavzame celotno vrstico v grid-u */
+.form-group:has(.dual-slider){grid-column:1 / -1}
+
+/* ── CUSTOM RANGE SLIDER ── */
+.form-group input[type=range]{
+  appearance:none;
+  -webkit-appearance:none;
+  width:100%;
+  height:6px;
+  background:var(--input-bg);
+  border:1px solid var(--card-border);
+  border-radius:100px;
+  outline:none;
+  padding:0;
+  cursor:pointer;
+  margin:0;
+}
+/* Webkit thumb (Chrome, Safari, Edge) */
+.form-group input[type=range]::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--gozdna);
+  border:2px solid var(--smetanova);
+  cursor:grab;
+  box-shadow:0 2px 5px rgba(0,0,0,.25);
+  transition:transform .1s;
+}
+.form-group input[type=range]::-webkit-slider-thumb:active{
+  cursor:grabbing;
+  transform:scale(1.15);
+}
+/* Firefox thumb */
+.form-group input[type=range]::-moz-range-thumb{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--gozdna);
+  border:2px solid var(--smetanova);
+  cursor:grab;
+  box-shadow:0 2px 5px rgba(0,0,0,.25);
+}
+.form-group input[type=range]::-moz-range-thumb:active{
+  cursor:grabbing;
+  transform:scale(1.15);
+}
+
+/* Drugi select-i imajo padding, range nima */
+.form-group select{
+  width:100%;
+  padding:.6rem .9rem;
+  border:1px solid var(--card-border);
+  border-radius:6px;
+  font-family:'Outfit',sans-serif;
+  font-size:.85rem;
+  color:var(--txt);
+  background:var(--input-bg);
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+}
+.form-group select:focus{outline:2px solid var(--gozdna);border-color:var(--gozdna)}
+.form-footer{padding:1.2rem 2rem;border-top:1px solid var(--divider);display:flex;justify-content:flex-end;gap:.8rem}
+.btn-submit{background:var(--gozdna);color:var(--smetanova);border:none;padding:.75rem 2rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:#3d4e42}
+.btn-submit:disabled{background:var(--kaki);cursor:not-allowed}
+.btn-priporoci-profil{background:var(--oker);color:var(--txt)}
+.btn-priporoci-profil:hover{background:#d4b568}
+.btn-reset{background:transparent;color:var(--txt3);border:1px solid var(--card-border);padding:.75rem 1.2rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.82rem;cursor:pointer}
+.btn-reroll{background:var(--oker);color:var(--txt);border:none;padding:.65rem 1.4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s;display:inline-flex;align-items:center;gap:.4rem}
+.btn-reroll:hover{background:#d4b568}
+.btn-reroll:disabled{background:var(--kaki);cursor:not-allowed;color:var(--txt3)}
+
+/* RESULTS */
+.results-section{max-width:1100px;margin:0 auto;padding:0 3rem 5rem}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;flex-wrap:wrap}
+.results-header h2{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--gozdna);font-weight:700}
+.results-header p{font-size:.82rem;color:var(--txt3)}
+.back-btn{display:inline-flex;align-items:center;gap:.35rem;background:transparent;border:1.5px solid var(--input-border);color:var(--txt3);font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.35rem .85rem;border-radius:20px;cursor:pointer;margin-bottom:.9rem;transition:all .18s}
+.back-btn:hover{border-color:var(--gozdna);color:var(--gozdna)}
+.sort-bar{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.sort-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rjava);margin-right:.2rem;white-space:nowrap}
+.sort-btn{background:transparent;border:1.5px solid var(--input-border);color:var(--txt3);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;padding:.3rem .75rem;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap}
+.sort-btn:hover{border-color:var(--gozdna);color:var(--gozdna)}
+.sort-btn.active{background:var(--gozdna);border-color:var(--gozdna);color:#fff}
+.trail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+
+/* ── VRHI GRID ── */
+.vrhi-grid{display:flex;flex-direction:column;gap:1rem}
+.vrh-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.vrh-card:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--shadow-hover)}
+/* HEADER — score badge je absolutno pozicioniran v desni zgornji kot.
+   Levi del se razteza čez celotno širino, da imamo več prostora za stat-grid. */
+.vrh-card-header{position:relative;padding:1.4rem 1.6rem;cursor:pointer;user-select:none;transition:background .15s}
+.vrh-card-header:hover{background:var(--detail-bg)}
+.vrh-card-header.open{border-bottom:1px solid var(--card-border)}
+.vrh-card-left{display:flex;flex-direction:column;gap:.45rem;min-width:0;padding-right:140px}
+.vrh-name{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:var(--gozdna);line-height:1.2}
+.vrh-gorovje{font-size:.85rem;color:var(--txt3);letter-spacing:.04em;font-weight:500}
+
+/* STAT GRID — profesionalni izgled brez emojijev */
+.vrh-stats-grid{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:1rem 1.4rem;
+  margin-top:1rem;
+  padding-top:1.1rem;
+  border-top:1px solid var(--card-border);
+}
+.vrh-stat-item{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.vrh-stat-lbl{
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--rjava);
+  line-height:1.1;
+}
+.vrh-stat-val{
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--txt);
+  line-height:1.3;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+/* Desno zgoraj kot — absolute. Chevron pa pod njim. */
+.vrh-card-right{position:absolute;top:1.4rem;right:1.6rem;display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.vrh-score-badge{background:var(--oker);color:var(--txt);font-size:.82rem;font-weight:800;padding:.45rem 1rem;border-radius:100px;white-space:nowrap}
+.vrh-chevron{color:var(--txt3);font-size:1.2rem;transition:transform .25s;line-height:1}
+.vrh-chevron.open{transform:rotate(180deg)}
+
+/* --- staro: ohranimo za backward compat (če bi negde drugje uporabljali) --- */
+.vrh-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.vrh-st-poti{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(78,98,83,.1);color:var(--gozdna);padding:.15rem .55rem;border-radius:100px}
+.vrh-stats-row{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:.15rem}
+.vrh-stat{display:inline-flex;align-items:center;gap:.25rem;font-size:.72rem;font-weight:600;color:var(--txt2);background:var(--detail-bg);padding:.2rem .55rem;border-radius:100px;white-space:nowrap}
+.vrh-stat .ico{font-size:.85rem;line-height:1}
+
+/* POTI LISTA znotraj vrha */
+.vrh-poti-lista{display:none;flex-direction:column;gap:0}
+.vrh-poti-lista.open{display:flex}
+.pot-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1.3rem;cursor:pointer;border-top:1px solid var(--card-border);transition:background .15s;gap:1rem}
+.pot-row:hover{background:var(--detail-bg)}
+.pot-row-left{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.pot-row-name{font-size:.88rem;font-weight:600;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pot-row-stats{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.pot-stat-pill{font-size:.68rem;font-weight:600;background:var(--detail-bg);color:var(--txt2);padding:.15rem .5rem;border-radius:4px;white-space:nowrap}
+.pot-stat-pill.highlight{background:rgba(78,98,83,.12);color:var(--gozdna);font-weight:700}
+.pot-row-tags{display:flex;gap:.3rem;flex-wrap:wrap}
+.pot-row-right{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.pot-score-sm{font-size:.68rem;font-weight:800;color:var(--gozdna);background:rgba(78,98,83,.1);padding:.2rem .5rem;border-radius:100px;white-space:nowrap}
+
+/* TRAIL CARD */
+.trail-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;display:flex;flex-direction:column}
+.trail-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow-hover)}
+.trail-card-top{background:var(--gozdna);padding:1.1rem 1.2rem;position:relative}
+.trail-card-top .score-badge{position:absolute;top:.8rem;right:.8rem;background:var(--oker);color:var(--txt);font-size:.68rem;font-weight:800;padding:.25rem .65rem;border-radius:100px}
+.trail-card-top h3{font-family:'Fraunces',serif;font-size:1rem;color:var(--smetanova);margin-bottom:.2rem;font-weight:700;padding-right:60px}
+.trail-card-top .vrh{font-size:.75rem;color:var(--olivna)}
+.trail-card-body{padding:1.1rem 1.2rem;flex:1;display:flex;flex-direction:column}
+.trail-stats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.8rem}
+.trail-stats-3{grid-template-columns:1fr 1fr 1fr}
+.stat{text-align:center;background:var(--detail-bg);border-radius:6px;padding:.5rem}
+.stat .val{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--gozdna)}
+.stat .lbl{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.trail-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .55rem;border-radius:100px}
+.tag-teza{background:var(--kaki);color:var(--txt2)}
+.tag-oz{background:rgba(78,98,83,.12);color:var(--gozdna)}
+.tag-reg{background:rgba(226,194,118,.25);color:var(--rjava)}
+.score-bar{height:4px;background:var(--kaki);border-radius:2px;margin:.8rem 0 0;overflow:hidden}
+.score-fill{height:100%;background:var(--gozdna);border-radius:2px;transition:width .8s ease}
+
+/* STARS on card */
+/* COMBINED RATING BLOCK */
+.card-rating-combo{margin-top:.7rem;padding-top:.7rem;border-top:1px dashed var(--divider);display:flex;flex-direction:column;gap:.5rem}
+.rating-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.5rem}
+.rating-row .rating-label{font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--txt3);white-space:nowrap}
+.rating-row-ustr .rating-label{color:var(--rjava)}
+.rating-row .stars{display:flex;gap:2px}
+.rating-row .star{cursor:pointer;font-size:1.05rem;color:var(--card-border);transition:color .15s,transform .1s;user-select:none;line-height:1}
+.rating-row .star:hover{transform:scale(1.15)}
+.rating-row .star.active{color:var(--zlata)}
+.rating-row .star.locked{cursor:default}
+.rating-row .star.locked:hover{transform:none}
+.rating-row .rating-info{font-size:.65rem;color:var(--txt3);font-weight:600;text-align:right}
+.rating-row .rating-info b{color:var(--oker)}
+
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem;gap:1rem;color:var(--txt3)}
+.spinner{width:36px;height:36px;border:3px solid var(--kaki);border-top-color:var(--gozdna);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SEARCH VIEW ── */
+#view-search .search-wrap{max-width:1100px;margin:0 auto;padding:2rem 3rem 5rem}
+.search-bar-row{display:flex;gap:.7rem;margin-bottom:1.5rem}
+.search-input{flex:1;padding:.75rem 1.1rem;border:2px solid var(--card-border);border-radius:8px;font-family:'Outfit',sans-serif;font-size:.95rem;transition:border-color .2s}
+.search-input:focus{outline:none;border-color:var(--gozdna)}
+.btn-search{background:var(--gozdna);color:var(--smetanova);border:none;padding:.75rem 1.6rem;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer}
+
+/* ── STATS VIEW ── */
+#view-stats .stats-wrap{max-width:1100px;margin:0 auto;padding:2rem 3rem 5rem}
+
+/* ── PROFIL VIEW ── */
+#view-profil .profil-wrap{max-width:1100px;margin:0 auto;padding:2rem 3rem 5rem}
+#view-test_ai .profil-wrap{max-width:1100px;margin:0 auto;padding:2rem 3rem 5rem}
+.test-result{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.5rem;margin-bottom:1.2rem}
+.test-result h3{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--gozdna);margin-bottom:.7rem}
+.test-result h3 .em{font-style:italic;color:var(--oker)}
+.test-verdict{background:var(--detail-bg);border-left:4px solid var(--gozdna);padding:1rem 1.2rem;border-radius:6px;font-size:.9rem;margin-bottom:1.2rem}
+.test-verdict.uspeh{border-left-color:#4caf50}
+.test-verdict.napaka{border-left-color:#c64a3a}
+.test-result .razlaga{font-size:.85rem;color:var(--txt2);line-height:1.7;margin-bottom:.8rem}
+.test-mini-list{display:flex;flex-direction:column;gap:.35rem;margin-top:.4rem}
+.test-mini-list .row{display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;padding:.45rem .7rem;background:var(--detail-bg);border-radius:6px;font-size:.78rem;align-items:center}
+.test-mini-list .row.match{border-left:3px solid #4caf50}
+.test-mini-list .row.nomatch{border-left:3px solid var(--card-border)}
+.test-mini-list .pid{font-family:monospace;color:var(--txt3);font-size:.7rem}
+.test-mini-list .pot{color:var(--txt);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.test-mini-list .meta{color:var(--txt3);font-size:.7rem;font-family:monospace;white-space:nowrap}
+.test-mini-list .meta b{color:var(--gozdna)}
+.test-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:768px){
+  #view-test_ai .profil-wrap{padding:1.5rem 1rem 3rem}
+  .test-grid{grid-template-columns:1fr}
+}
+.profil-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem}
+.profil-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.4rem}
+.profil-card h3{font-family:'Fraunces',serif;font-size:1rem;color:var(--gozdna);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.profil-card h3 .em{font-style:italic;color:var(--oker)}
+.profil-stat-row{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px dashed var(--divider);font-size:.85rem}
+.profil-stat-row:last-child{border-bottom:none}
+.profil-stat-row .lbl{color:var(--txt3);font-weight:600}
+.profil-stat-row .val{color:var(--txt);font-weight:700}
+.profil-row-list{display:flex;flex-direction:column;gap:.35rem}
+.profil-row-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.7rem;padding:.55rem .7rem;background:var(--detail-bg);border-radius:6px;font-size:.8rem;cursor:pointer;transition:background .15s}
+.profil-row-item:hover{background:var(--card-border)}
+.profil-row-item .stars-mini{color:var(--zlata);font-size:.85rem;letter-spacing:1px}
+.profil-row-item .pot-name{color:var(--txt);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.profil-row-item .meta{color:var(--txt3);font-size:.7rem;text-align:right;white-space:nowrap}
+.profil-empty{text-align:center;color:var(--txt3);padding:1.5rem;font-style:italic;font-size:.85rem}
+.profil-soused-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.7rem;padding:.55rem .7rem;background:var(--detail-bg);border-radius:6px;font-size:.78rem}
+.profil-soused-row .uid{color:var(--rjava);font-weight:700;font-family:monospace;font-size:.7rem}
+.profil-soused-row .desc{color:var(--txt2)}
+.profil-soused-row .razd{color:var(--txt3);font-size:.7rem;font-family:monospace}
+
+#view-profil .profil-grid{grid-template-columns:1fr 1fr}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.4rem;border-top:3px solid var(--accent)}
+.stat-card .big{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:var(--gozdna)}
+.stat-card .lbl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:.2rem}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.chart-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.4rem}
+.chart-card h3{font-family:'Fraunces',serif;font-size:.95rem;color:var(--gozdna);margin-bottom:1rem}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(30,33,24,.6);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--card-bg);border-radius:14px;width:100%;max-width:420px;overflow:hidden;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.modal-top{background:var(--gozdna);padding:1.6rem;text-align:center}
+.modal-top .logo{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--oker)}
+.modal-top p{font-size:.75rem;color:var(--olivna);margin:.2rem 0 0}
+.modal-body{padding:1.5rem}
+.tab-row{display:flex;gap:0;background:var(--input-bg);border-radius:6px;padding:3px;margin-bottom:1.2rem}
+.tab-btn{flex:1;text-align:center;font-size:.75rem;font-weight:600;padding:.4rem;border-radius:4px;border:none;cursor:pointer;color:var(--txt3);background:transparent;transition:all .2s}
+.tab-btn.active{background:var(--card-bg);color:var(--gozdna);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.modal-field{margin-bottom:.85rem}
+.modal-field label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rjava);margin-bottom:.3rem}
+.modal-field input{width:100%;padding:.55rem .9rem;border:1.5px solid var(--card-border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.85rem;transition:border-color .2s}
+.modal-field input:focus{outline:none;border-color:var(--gozdna)}
+.avatar-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.85rem}
+.avatar-opt{width:44px;height:44px;border-radius:50%;border:2px solid var(--card-border);cursor:pointer;font-size:1.05rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:border-color .2s,transform .15s;font-family:'Fraunces',serif}
+.avatar-opt:hover{transform:scale(1.05)}
+.avatar-opt.selected{border-color:var(--oker);box-shadow:0 0 0 2px rgba(226,194,118,.25)}
+.user-avatar-mini{width:28px;height:28px;border-radius:50%;background:var(--gozdna);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.78rem;font-weight:700}
+.modal-submit{width:100%;background:var(--gozdna);color:var(--smetanova);border:none;padding:.7rem;border-radius:7px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:.4rem;transition:background .2s}
+.modal-submit:hover{background:#3d4e42}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.1);border:none;color:var(--smetanova);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.modal-top{position:relative}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gozdna);color:var(--smetanova);padding:.8rem 1.4rem;border-radius:8px;font-size:.82rem;font-weight:600;z-index:9999;transform:translateX(200%);transition:transform .3s ease;border-left:4px solid var(--oker)}
+.toast.show{transform:none}
+
+/* DETAIL PANEL */
+.detail-overlay{position:fixed;inset:0;background:rgba(30,33,24,.5);z-index:500;display:none}
+.detail-overlay.open{display:block}
+.detail-panel{position:fixed;right:0;top:0;bottom:0;width:min(620px,100vw);background:var(--card-bg);z-index:501;transform:translateX(100%);transition:transform .35s ease;overflow-y:auto;border-left:1px solid var(--kaki)}
+.detail-panel.open{transform:none}
+.detail-header{background:var(--gozdna);padding:1.5rem;position:relative}
+.detail-header h2{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--smetanova);margin-bottom:.2rem;padding-right:3rem}
+.detail-header .vrh{font-size:.8rem;color:var(--olivna)}
+.detail-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:var(--smetanova);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.detail-body{padding:1.5rem}
+.detail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.5rem}
+.detail-stat{background:var(--detail-bg);border-radius:8px;padding:.8rem;text-align:center}
+.detail-stat .val{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--gozdna)}
+.detail-stat .lbl{font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.detail-section-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--rjava);margin-bottom:.5rem;margin-top:.2rem}
+.detail-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+
+/* COLLAPSIBLE OPIS/DOSTOP */
+.collapsible{position:relative;margin-bottom:.4rem}
+.collapsible .text{font-size:.88rem;color:var(--txt2);line-height:1.8;white-space:pre-wrap;overflow:hidden;transition:max-height .35s ease}
+.collapsible.collapsed .text{max-height:9.5em}                        /* ~6 vrstic */
+.collapsible.expanded  .text{max-height:none}
+.collapsible.collapsed .text::after{content:'';position:absolute;left:0;right:0;bottom:2.3rem;height:3.2em;background:linear-gradient(180deg,transparent 0%,var(--fade-to) 85%);pointer-events:none}
+.collapsible .toggle-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:.4rem;margin-bottom:1.2rem;background:transparent;border:none;color:var(--gozdna);font-family:'Outfit',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.04em;cursor:pointer;padding:.25rem 0;border-bottom:1.5px solid var(--gozdna);transition:color .15s,border-color .15s}
+.collapsible .toggle-btn:hover{color:var(--oker);border-bottom-color:var(--oker)}
+.collapsible .toggle-btn .arrow{display:inline-block;transition:transform .25s}
+.collapsible.expanded .toggle-btn .arrow{transform:rotate(180deg)}
+.collapsible .text.empty{color:var(--txt3);font-style:italic}
+
+/* rating v detail panelu */
+.detail-rating-box{background:var(--smetanova);border:1px solid var(--card-border);border-radius:10px;padding:1rem 1.1rem;margin-bottom:1.2rem}
+.detail-extra-info{background:var(--detail-bg);border-left:3px solid var(--gozdna);border-radius:6px;padding:.85rem 1rem;margin-bottom:1.2rem;font-size:.78rem}
+.detail-extra-info .extra-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem .8rem;margin-bottom:.4rem}
+.detail-extra-info .extra-row:last-child{margin-bottom:0}
+.detail-extra-info .extra-item{display:flex;flex-direction:column;gap:.1rem}
+.detail-extra-info .extra-item .lbl{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rjava)}
+.detail-extra-info .extra-item .val{font-weight:600;color:var(--txt)}
+@media(max-width:768px){
+  .detail-extra-info .extra-row{grid-template-columns:1fr}
+}
+.detail-rating-box-ustr{border-color:rgba(226,194,118,0.4)}
+.detail-rating-box-ustr .label{color:var(--rjava)}
+.detail-rating-box .label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--rjava);margin-bottom:.5rem}
+.detail-rating-box .row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.detail-rating-box .stars{display:flex;gap:3px}
+.detail-rating-box .star{cursor:pointer;font-size:1.6rem;color:var(--kaki);transition:color .15s,transform .1s;user-select:none;line-height:1}
+.detail-rating-box .star:hover{transform:scale(1.15)}
+.detail-rating-box .star.active{color:var(--zlata)}
+.detail-rating-box .star.locked{cursor:default}
+.detail-rating-box .star.locked:hover{transform:none}
+.detail-rating-box .summary{font-size:.78rem;color:var(--txt3)}
+.detail-rating-box .summary b{color:var(--gozdna);font-weight:700}
+
+/* ── HAMBURGER GUMB ── (skrit na desktop, viden na mobile) */
+.nav-toggle{display:none;background:transparent;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--oker);border-radius:2px;transition:transform .25s,opacity .25s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:768px){
+  /* ── NAVIGACIJA ── */
+  nav{padding:0 1rem;flex-wrap:nowrap;justify-content:space-between}
+  .nav-logo{padding:.6rem 0;font-size:.95rem;gap:.5rem}
+  .nav-logo-img{width:34px;height:34px}
+  .nav-links{display:none}
+  .nav-user{display:none}
+  .mob-menu-wrap{display:block}
+
+  /* Hero theme gumb — desno nad search barom */
+  .hero-theme-row{display:flex;justify-content:flex-end;width:100%;margin-top:.7rem}
+  .hero-theme-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.12);border:1.5px solid rgba(226,194,118,0.4);color:var(--oker);font-size:1.1rem;cursor:pointer}
+
+  /* CTA gumba */
+  .hero-cta-btns{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+  .hero-cta-btns button{padding:.7rem 1.3rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;border:2px solid var(--oker)}
+  .hero-cta-btns button:not(.outline){background:var(--oker);color:#1e2118}
+  .hero-cta-btns button.outline{background:transparent;color:var(--oker)}
+
+  /* ── HERO ── */
+  #view-home .hero{padding:2.5rem 1.2rem 2.5rem;min-height:auto}
+  .hero-logo{width:80px;height:80px}
+  .hero-mountains{height:50%}
+  .hero h1{font-size:clamp(2rem,9vw,3rem);line-height:1}
+  .hero p{font-size:.92rem;margin-bottom:1.5rem}
+  .hero-chips{gap:.4rem}
+  .chip{font-size:.6rem;padding:.22rem .6rem}
+
+  /* Hero iskalna vrstica — vidna samo na mobilnem */
+  .hero-search-bar{
+    display:flex;
+    gap:.5rem;
+    margin-top:1.2rem;
+    width:100%;
+    max-width:480px;
+  }
+  .hero-search-bar input{
+    flex:1;
+    padding:.65rem 1rem;
+    border:2px solid rgba(255,255,255,.25);
+    border-radius:8px;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-family:'Outfit',sans-serif;
+    font-size:.88rem;
+    outline:none;
+  }
+  .hero-search-bar input::placeholder{color:rgba(255,255,255,.55)}
+  .hero-search-bar input:focus{border-color:var(--oker)}
+  .hero-search-bar button{
+    padding:.65rem 1.1rem;
+    background:var(--oker);
+    color:#1e2118;
+    border:none;
+    border-radius:8px;
+    font-family:'Outfit',sans-serif;
+    font-size:.85rem;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+
+  /* ── FORM ── */
+  .form-section,.results-section{padding:1.5rem 1rem 3rem}
+  .form-card{border-radius:8px}
+  .form-header{padding:1.1rem 1.2rem;flex-direction:column;align-items:flex-start;gap:.4rem}
+  .form-header h2{font-size:1.05rem}
+  .form-header p{font-size:.72rem}
+  .form-body{padding:1.2rem 1.1rem}
+  .form-grid{grid-template-columns:1fr;gap:1rem}
+  .form-group label{font-size:.65rem}
+  .form-group[style*="span"]{grid-column:1 / -1 !important}
+  .form-footer{padding:1rem 1.2rem;flex-direction:column;gap:.5rem}
+  .form-footer button{width:100%}
+  .btn-reset{order:2}
+  /* DUAL SLIDER — vertikalni layout za boljše dotike:
+     - "OD 550m" ena vrstica zgoraj
+     - slider polna širina spodaj (lahko ga vsako prst zadene)
+  */
+  .slider-row{
+    flex-direction:column;
+    align-items:stretch;
+    gap:.35rem;
+  }
+  /* Top vrstica: tag + vrednost na nasprotnih straneh */
+  .slider-row{position:relative}
+  .slider-tag{
+    font-size:.62rem;
+    min-width:auto;
+    text-align:left;
+    flex-shrink:0;
+    align-self:flex-start;
+    order:1;
+  }
+  .slider-val{
+    font-size:.95rem;
+    min-width:auto;
+    text-align:right;
+    flex-shrink:0;
+    position:absolute;
+    top:0;
+    right:0;
+    order:2;
+  }
+  .slider-row input[type=range]{
+    flex:1 1 auto;
+    min-width:0;
+    width:100%;
+    order:3;
+    margin:.3rem 0;
+  }
+  /* Še večji thumb za mobile dotik (ampak ne prevelik, da ne prekriva napisov) */
+  .form-group input[type=range]::-webkit-slider-thumb{
+    width:22px;height:22px;
+    box-shadow:0 0 0 2px rgba(255,255,255,0.15);
+  }
+  .form-group input[type=range]::-moz-range-thumb{
+    width:22px;height:22px;
+    box-shadow:0 0 0 2px rgba(255,255,255,0.15);
+  }
+  .form-group input[type=range]{height:8px}
+  .dual-slider{gap:1rem}
+
+  /* ── RESULTS HEADER ── */
+  .results-header{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .results-header h2{font-size:1.3rem}
+  .btn-reroll{width:100%;justify-content:center}
+  .vrh-card-header{padding:1.3rem 1.1rem}
+  .vrh-name{font-size:1.35rem}
+  .vrh-gorovje{font-size:.85rem}
+  /* Na mobile name ne sme prekrivati badge-a — score badge je manjši v desnem zgornjem kotu */
+  .vrh-card-left{padding-right:110px}
+  .vrh-card-right{top:1.1rem;right:1.1rem;gap:.5rem}
+  .vrh-score-badge{font-size:.7rem;padding:.32rem .7rem}
+  .vrh-chevron{font-size:1rem}
+  .vrh-stats-grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:1rem 1rem;
+    margin-top:.85rem;
+    padding-top:.9rem;
+  }
+  .vrh-stat-lbl{font-size:.65rem}
+  .vrh-stat-val{font-size:1rem;line-height:1.3}
+  .pot-row{padding:.7rem 1rem;grid-template-columns:1fr auto}
+  .pot-row-stats{gap:.35rem}
+  .pot-stat-pill{font-size:.62rem}
+
+  /* ── KARTICE ── */
+  .trail-grid{grid-template-columns:1fr;gap:.9rem}
+  .trail-card-top{padding:.95rem 1rem;padding-right:80px}
+  .trail-card-top h3{font-size:.95rem;padding-right:0}
+  .trail-card-top .vrh{font-size:.7rem}
+  .trail-card-top .score-badge{top:.6rem;right:.6rem;font-size:.62rem;padding:.2rem .5rem}
+  .trail-card-body{padding:.95rem 1rem}
+  .trail-stats{gap:.4rem}
+  .stat .val{font-size:.95rem}
+  .stat .lbl{font-size:.55rem}
+  .rating-row .rating-label{font-size:.55rem}
+  .rating-row .rating-info{font-size:.6rem}
+  .rating-row .star{font-size:1.15rem}
+
+  /* ── ISKANJE ── */
+  #view-search .search-wrap{padding:1.5rem 1rem 3rem}
+  .search-bar-row{flex-direction:column;gap:.5rem}
+  .search-input{font-size:.92rem;padding:.7rem 1rem}
+  .btn-search{width:100%;padding:.7rem}
+
+  /* ── STATISTIKE ── */
+  #view-stats .stats-wrap{padding:1.5rem 1rem 3rem}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:.7rem}
+  .stat-card{padding:1rem .9rem}
+  .stat-card .big{font-size:1.7rem}
+  .stat-card .lbl{font-size:.62rem}
+  .charts-grid{grid-template-columns:1fr;gap:1rem}
+  .chart-card{padding:1rem}
+  .chart-card h3{font-size:.85rem}
+  .chart-card > div[id^="chart"]{height:220px !important}
+  #chart-oznacenost{height:300px !important}
+
+  /* ── PROFIL ── */
+  #view-profil .profil-wrap{padding:1.5rem 1rem 3rem}
+  #view-profil .profil-grid{grid-template-columns:1fr;gap:.9rem}
+  .profil-card{padding:1.1rem 1rem}
+  .profil-card h3{font-size:.92rem}
+  .profil-stat-row{font-size:.78rem}
+  .profil-row-item{grid-template-columns:auto 1fr;gap:.5rem}
+  .profil-row-item .meta{display:none}     /* na mobile skrij meta — preozko */
+
+  /* ── DETAIL PANEL ── */
+  .detail-panel{width:100%;max-width:100%}
+  .detail-header{padding:1.2rem 1rem 1.2rem 1rem}
+  .detail-header h2{font-size:1.1rem;padding-right:2.5rem}
+  .detail-body{padding:1.2rem 1rem}
+  .detail-stats{gap:.5rem}
+  .detail-stat{padding:.6rem .4rem}
+  .detail-stat .val{font-size:1.05rem}
+  .detail-stat .lbl{font-size:.55rem}
+
+  /* ── MODAL ── */
+  .modal-overlay{padding:1rem;align-items:flex-start;padding-top:3rem;overflow-y:auto}
+  .modal-box{max-width:100%}
+  .modal-top{padding:1.2rem}
+  .modal-body{padding:1.2rem}
+
+  /* ── TOAST ── */
+  .toast{left:1rem;right:1rem;bottom:1rem;font-size:.78rem;padding:.7rem 1rem}
+}
+
+/* Dodatne mikro-prilagoditve za zelo majhne ekrane (≤380px) */
+@media(max-width:380px){
+  .hero h1{font-size:2rem}
+  .hero p{font-size:.85rem}
+  .form-body{padding:1rem .7rem}
+  .form-group select{padding:.55rem .7rem;font-size:.82rem}
+  .stats-grid{grid-template-columns:1fr}
+  .trail-stats{grid-template-columns:1fr 1fr}
+  .stat .val{font-size:.85rem}
+  /* slider-val 3rem da ostane več prostora za slider */
+  .slider-val{font-size:.78rem;min-width:3.3rem}
+  .slider-tag{min-width:1.4rem;font-size:.55rem}
+  .slider-row{gap:.4rem}
+}
+
+/* Tableti in ozki laptopi: form ima 2 stolpca, dual-slider full-width */
+@media(min-width:769px) and (max-width:1024px){
+  .form-grid{grid-template-columns:1fr 1fr}
+  /* dual-slider naj zavzame celo vrstico — sicer slider preozek */
+  .form-group:has(.dual-slider){grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="navigate('home')">
+    <img src="/static/logo.png" alt="" class="nav-logo-img">
+    <span class="nav-logo-text">GRM <em>U HRIBE</em></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#" onclick="navigate('home')" id="nav-home">Priporoči pot</a></li>
+    <li class="nav-search-li"><a href="#" onclick="navigate('search')" id="nav-search">Iskanje</a></li>
+    <li><a href="#" onclick="navigate('stats')" id="nav-stats">Statistike</a></li>
+    <li id="nav-profil-li" style="display:none"><a href="#" onclick="navigate('profil')" id="nav-profil">Moj profil</a></li>
+    <li><button class="btn-nav btn-theme" id="btn-theme" onclick="preklopiTemo()" title="Preklopi temo" aria-label="Preklopi temo"><span id="theme-icon">🌙</span></button></li>
+  </ul>
+  <div class="nav-user" id="nav-user">
+    <button class="btn-nav btn-login" onclick="openModal('login')">Prijava</button>
+    <button class="btn-nav btn-register" onclick="openModal('register')">Registracija</button>
+  </div>
+  <!-- Mobilni meni gumb (desno zgoraj) — samo mobilni -->
+  <div class="mob-menu-wrap" id="mob-menu-wrap">
+    <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleMobMenu()" aria-label="Meni">
+      <span id="mob-menu-avatar">☰</span>
+      <span id="mob-menu-ime" style="font-size:.75rem;font-weight:600;color:var(--oker);margin-left:.3rem;display:none"></span>
+    </button>
+    <div class="mob-menu-dropdown" id="mob-menu-dropdown">
+      <button onclick="mobNavigate('stats')">📊 Statistike</button>
+      <button onclick="mobNavigate('search')">🔍 Iskanje</button>
+      <button class="mob-menu-profil" id="mob-menu-profil-btn" onclick="mobNavigate('profil')" style="display:none">👤 Moj profil</button>
+      <div class="mob-menu-divider"></div>
+      <button class="mob-menu-login" id="mob-menu-login-btn" onclick="closeMenu();openModal('login')">Prijava</button>
+      <button class="mob-menu-register" id="mob-menu-register-btn" onclick="closeMenu();openModal('register')">Registracija</button>
+      <button class="mob-menu-odjava" id="mob-menu-odjava-btn" onclick="odjava()" style="display:none">Odjava</button>
+    </div>
+  </div>
+</nav>
+
+<!-- VIEW: HOME -->
+<div class="view active" id="view-home">
+  <div class="hero">
+    <div class="hero-mountains">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- SLOJ 1: najsvetlejši, daljina, mehki valovi -->
+      <path fill="#7d9078" d="
+        M 0,400  L 0,180
+        C 80,170  140,150  220,160
+        C 290,168  340,130  420,135
+        C 500,140  560,165  640,158
+        C 720,150  770,118  850,125
+        C 920,131  970,160  1050,155
+        C 1130,150  1170,165  1200,162
+        L 1200,400 Z"/>
+
+      <!-- SLOJ 2: srednji-svetli — vmesna gorovja -->
+      <path fill="#5f7560" d="
+        M 0,400  L 0,230
+        C 60,225  110,210  170,215
+        L 200,195
+        L 235,170
+        L 270,210
+        C 320,225  380,222  440,218
+        L 480,180
+        L 530,130
+        L 580,178
+        L 620,205
+        C 690,220  750,215  810,210
+        L 855,175
+        L 900,225
+        C 960,235  1030,232  1090,228
+        L 1140,200
+        L 1200,225
+        L 1200,400 Z"/>
+
+      <!-- SLOJ 3: GLAVNI Triglav vrh — najvišji v kompoziciji -->
+      <path fill="#4E6253" d="
+        M 0,400  L 0,290
+        C 70,285  130,270  190,265
+        L 230,240
+        L 280,210
+        C 320,200  360,195  400,205
+        L 440,225
+        L 490,175
+        L 540,115
+        L 590,55
+        L 640,115
+        L 690,175
+        L 740,225
+        L 790,205
+        C 830,200  870,205  910,215
+        L 950,240
+        L 990,265
+        C 1040,275  1100,272  1160,268
+        L 1200,275
+        L 1200,400 Z"/>
+
+      <!-- SLOJ 4: srednji-temni — bližja gorovja -->
+      <path fill="#3a4d40" d="
+        M 0,400  L 0,320
+        C 50,318  100,310  150,305
+        L 200,275
+        L 250,250
+        L 300,295
+        C 360,308  430,305  490,302
+        L 540,260
+        L 590,225
+        L 640,265
+        L 700,300
+        C 760,312  820,308  870,305
+        L 925,265
+        L 975,225
+        L 1020,278
+        L 1075,310
+        C 1130,318  1180,315  1200,313
+        L 1200,400 Z"/>
+
+      <!-- SLOJ 5: najtemnejši, ospredje — nizki ostri grebeni -->
+      <path fill="#1f2925" d="
+        M 0,400  L 0,360
+        C 60,358  120,352  180,348
+        L 230,330
+        L 280,355
+        L 340,365
+        C 410,370  480,367  550,365
+        L 600,345
+        L 650,335
+        L 700,360
+        L 760,372
+        C 830,378  900,375  970,372
+        L 1020,355
+        L 1075,348
+        L 1130,365
+        C 1170,373  1200,370  1200,370
+        L 1200,400 Z"/>
+    </svg>
+    </div>
+    <div class="hero-inner">
+      <img src="/static/logo.png" alt="" class="hero-logo">
+      <h1>Najdi svojo<br><em>idealno pot</em></h1>
+      <p>Pohodniški priporočilni sistem razvrščen s pomočjo umetne inteligence (collaborative filtering) — 7947 slovenskih gorskih poti, prilagojenih tvojemu profilu.</p>
+      <div class="hero-chips">
+        <span class="chip a">7947 poti</span>
+        <span class="chip">Collaborative filtering</span>
+        <span class="chip">Evklidska razdalja</span>
+        <span class="chip">Brezplačno</span>
+      </div>
+      <!-- Mini iskalna vrstica — vidna samo na mobilnem -->
+      <div class="hero-search-bar">
+        <input type="text" id="hero-search-input" placeholder="Iskanje poti ali vrha..." onkeyup="if(event.key==='Enter')heroIsci()">
+        <button onclick="heroIsci()">Išči</button>
+      </div>
+      <!-- CTA gumba — samo mobilni -->
+      <div class="hero-cta-btns">
+        <button onclick="navigate('home')" id="hero-btn-priporoci">Priporoči pot</button>
+        <button onclick="navigate('stats')" class="outline">Statistike</button>
+        <button onclick="preklopiTemo()" class="outline theme-cta-btn" id="hero-theme-cta"><span id="hero-theme-icon">🌙</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section">
+    <div class="form-card">
+      <div class="form-header">
+        <div>
+          <h2>Tvoj pohodniški priporočevalec</h2>
+          <p>Izpolni filtre — AI algoritem bo izbral najprimernejše poti</p>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="form-grid">
+          <div class="form-group" style="grid-column:1 / -1">
+            <label>Težavnost poti</label>
+            <select id="tezavnost">
+              <option value="1">Brez preference (vse težavnosti)</option>
+              <option value="2" selected>Lahka pot</option>
+              <option value="3">Lahko brezpotje</option>
+              <option value="4">Delno zahtevna pot</option>
+              <option value="5">Zahtevna pot</option>
+              <option value="6">Zelo zahtevna pot</option>
+              <option value="7">Izjemno zahtevna pot</option>
+              <option value="8">Alpinistični vzpon</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Regija / Gorovje</label>
+            <select id="gorovje">
+              <option value="vse">Vse regije</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:span 2">
+            <label>Označenost poti</label>
+            <select id="oznacenost">
+              <option value="vse" selected>Vse poti</option>
+              <option value="oznacena">Samo označene poti</option>
+              <option value="mesano">Samo delno označene poti</option>
+              <option value="brezpotje">Samo brezpotje</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:1 / -1">
+            <label>Višinska razlika (od – do, m)</label>
+            <div class="dual-slider">
+              <div class="slider-row">
+                <span class="slider-tag">od</span>
+                <input type="range" id="min_visina" min="0" max="2500" step="50" value="0" oninput="updateDual('visina')">
+                <span class="slider-val" id="min-visina-val">0m</span>
+              </div>
+              <div class="slider-row">
+                <span class="slider-tag">do</span>
+                <input type="range" id="max_visina" min="0" max="2500" step="50" value="2500" oninput="updateDual('visina')">
+                <span class="slider-val" id="max-visina-val">1000m</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="grid-column:1 / -1">
+            <label>Čas hoje (od – do)</label>
+            <div class="dual-slider">
+              <div class="slider-row">
+                <span class="slider-tag">od</span>
+                <input type="range" id="min_cas" min="0" max="13" step="1" value="0" oninput="updateDual('cas')">
+                <span class="slider-val" id="min-cas-val">0 min</span>
+              </div>
+              <div class="slider-row">
+                <span class="slider-tag">do</span>
+                <input type="range" id="max_cas" min="0" max="13" step="1" value="13" oninput="updateDual('cas')">
+                <span class="slider-val" id="max-cas-val">4 h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button class="btn-reset" onclick="resetForm()">Ponastavi</button>
+        <button class="btn-submit" id="btn-priporoči" onclick="pridobiPriporocila()">Poišči poti</button>
+        <button class="btn-submit btn-priporoci-profil" id="btn-priporoci-profil" onclick="pridobiPriporocilaIzProfila()" style="display:none" title="Uporabi shranjen profil iz registracije">Priporoči glede na moj profil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="results-section" style="display:none">
+    <div class="results-header">
+      <div>
+        <h2 id="results-title">Priporočeni vrhi</h2>
+        <p id="results-sub">Glede na tvoj profil</p>
+      </div>
+      <div class="sort-bar">
+        <span class="sort-label">Razvrsti:</span>
+        <button class="sort-btn active" data-sort="default" onclick="sortVrhe('default')">Privzeto</button>
+        <button class="sort-btn" data-sort="az" onclick="sortVrhe('az')">A–Ž</button>
+        <button class="sort-btn" data-sort="cas-asc" onclick="sortVrhe('cas-asc')">Čas ↑</button>
+        <button class="sort-btn" data-sort="cas-desc" onclick="sortVrhe('cas-desc')">Čas ↓</button>
+        <button class="sort-btn" data-sort="vis-asc" onclick="sortVrhe('vis-asc')">Višina ↑</button>
+        <button class="sort-btn" data-sort="pril-desc" onclick="sortVrhe('pril-desc')">Priljubljenost ↓</button>
+        <button class="sort-btn" data-sort="pril-asc" onclick="sortVrhe('pril-asc')">Priljubljenost ↑</button>
+      </div>
+    </div>
+    <div id="results-container"></div>
+  </div>
+</div>
+
+<!-- VIEW: SEARCH -->
+<div class="view" id="view-search">
+  <div class="search-wrap">
+    <div style="margin-bottom:1.5rem">
+      <button class="back-btn" onclick="navigateBack()" style="display:none">← Nazaj</button>
+      <h2 style="font-family:'Fraunces',serif;font-size:1.8rem;color:var(--gozdna);margin-bottom:.3rem">Iskanje poti</h2>
+      <p style="color:var(--txt3);font-size:.85rem">Išči po imenu poti, vrhu ali regiji</p>
+    </div>
+    <div class="search-bar-row">
+      <input type="text" class="search-input" id="search-input" placeholder="npr. Triglav, Snežnik, Julijske Alpe..." onkeyup="if(event.key==='Enter')isciPoti()">
+      <button class="btn-search" onclick="isciPoti()">Išči</button>
+    </div>
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<!-- VIEW: STATS -->
+<div class="view" id="view-stats">
+  <div class="stats-wrap">
+    <div style="margin-bottom:1.5rem">
+      <button class="back-btn" onclick="navigateBack()" style="display:none">← Nazaj</button>
+      <h2 style="font-family:'Fraunces',serif;font-size:1.8rem;color:var(--gozdna);margin-bottom:.3rem">Statistike baze</h2>
+      <p style="color:var(--txt3);font-size:.85rem">Pregled 7947 slovenskih gorskih poti · Google Charts vizualizacija</p>
+    </div>
+    <div class="stats-grid" id="stats-cards">
+      <div class="stat-card"><div class="big" id="s-skupaj">—</div><div class="lbl">Skupaj poti</div></div>
+      <div class="stat-card"><div class="big" id="s-vrhi">—</div><div class="lbl">Unikatnih vrhov</div></div>
+      <div class="stat-card"><div class="big" id="s-gorovja">—</div><div class="lbl">Gorskih regij</div></div>
+      <div class="stat-card"><div class="big" id="s-avg-hm">—</div><div class="lbl">Povp. višinska razlika</div></div>
+      <div class="stat-card"><div class="big" id="s-avg-cas">—</div><div class="lbl">Povp. čas vzpona</div></div>
+      <div class="stat-card"><div class="big" id="s-avg-pril">—</div><div class="lbl">Povp. priljubljenost</div></div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card"><h3>Zahtevnost poti</h3><div id="chart-zahtevnost" style="height:260px"></div></div>
+      <div class="chart-card"><h3>Označenost poti</h3>
+        <div id="chart-oznacenost" style="height:300px"></div>
+        <div id="oz-legenda" style="display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin-top:.5rem;font-size:.8rem"></div>
+      </div>
+      <div class="chart-card"><h3>Poti po regijah (top 8)</h3><div id="chart-regije" style="height:260px"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW: MOJ PROFIL (samo za prijavljene) -->
+<div class="view" id="view-profil">
+  <div class="profil-wrap">
+    <div style="margin-bottom:1.5rem">
+      <button class="back-btn" onclick="navigateBack()" style="display:none">← Nazaj</button>
+      <h2 style="font-family:'Fraunces',serif;font-size:1.8rem;color:var(--gozdna);margin-bottom:.3rem">Moj profil — <span id="profil-ime-naziv"></span></h2>
+      <p style="color:var(--txt3);font-size:.85rem">Tvoji pohodniški podatki, ocene in CF sosedje</p>
+    </div>
+
+    <div id="profil-content">
+      <div class="loading"><div class="spinner"></div><p>Nalagam tvoje podatke...</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW: ADMIN -->
+<div class="view" id="view-test_ai">
+  <div class="profil-wrap">
+    <!-- ADMIN: pregled registriranih uporabnikov -->
+    <div>
+      <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;color:var(--gozdna);margin-bottom:.3rem">Pregled uporabnikov</h2>
+      <p style="color:var(--txt3);font-size:.82rem;line-height:1.6;margin-bottom:1rem;max-width:720px">
+        Vsi registrirani uporabniki — kdaj so se registrirali in kakšen profil so vpisali.
+        Gesla niso prikazana (so hash-irana s salt-om v <code>users.json</code>).
+        Zaščiteno z admin geslom.
+      </p>
+      <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
+        <input type="password" id="admin-geslo" placeholder="admin geslo" style="padding:.55rem .9rem;border:1.5px solid var(--input-border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.85rem;background:var(--input-bg);color:var(--txt);min-width:180px">
+        <button class="btn-submit" onclick="prikaziUporabnike()">Pokaži uporabnike</button>
+      </div>
+      <div id="admin-uporabniki-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AUTH -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div class="logo">GRM U HRIBE</div>
+      <p id="modal-subtitle">Pridruži se skupnosti pohodnikov</p>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="tab-row">
+        <button class="tab-btn" id="tab-login" onclick="switchTab('login')">Prijava</button>
+        <button class="tab-btn active" id="tab-register" onclick="switchTab('register')">Registracija</button>
+      </div>
+      <!-- REGISTER -->
+      <div id="panel-register">
+        <!-- KORAK 1: osnovni podatki -->
+        <div id="reg-step-1">
+          <div class="modal-field"><label>Ime in priimek</label><input type="text" id="reg-ime" placeholder="Jana Novak"></div>
+          <div class="modal-field"><label>Uporabniško ime</label><input type="text" id="reg-uporabnik" placeholder="janezk" autocapitalize="off" autocomplete="username"></div>
+          <div class="modal-field"><label>Geslo</label><input type="password" id="reg-pass" placeholder="min. 8 znakov"></div>
+          <div style="margin-bottom:.85rem">
+            <label style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rjava);display:block;margin-bottom:.4rem">Barva profila</label>
+            <div class="avatar-row" id="avatar-row">
+              <div class="avatar-opt selected" data-av="A" style="background:#4E6253;color:#fff" onclick="selectAvatar(this)">A</div>
+              <div class="avatar-opt" data-av="B" style="background:#9D865E;color:#fff" onclick="selectAvatar(this)">B</div>
+              <div class="avatar-opt" data-av="C" style="background:#E2C276;color:#3a2e1e" onclick="selectAvatar(this)">C</div>
+              <div class="avatar-opt" data-av="D" style="background:#8E9B7E;color:#fff" onclick="selectAvatar(this)">D</div>
+              <div class="avatar-opt" data-av="E" style="background:#3a2e1e;color:#E2C276" onclick="selectAvatar(this)">E</div>
+            </div>
+          </div>
+          <button class="modal-submit" onclick="regNaprej()">Naprej → pohodniški profil</button>
+        </div>
+
+        <!-- KORAK 2: pohodniški profil -->
+        <div id="reg-step-2" style="display:none">
+          <div style="font-size:.78rem;color:var(--txt3);margin-bottom:.7rem;line-height:1.5">
+            <b>Pohodniški profil</b><br>
+            Za lažje priporočanje povej, kakšen pohodnik si. Te podatke lahko kadarkoli spremeniš.
+          </div>
+          <div class="modal-field">
+            <label>Najpogostejša težavnost poti</label>
+            <select id="reg-tezavnost" style="width:100%;padding:.55rem .9rem;border:1.5px solid var(--input-border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.85rem;background:var(--input-bg);color:var(--txt)">
+              <option value="2" selected>Lahka pot</option>
+              <option value="3">Lahko brezpotje</option>
+              <option value="4">Delno zahtevna pot</option>
+              <option value="5">Zahtevna pot</option>
+              <option value="6">Zelo zahtevna pot</option>
+              <option value="7">Izjemno zahtevna pot</option>
+              <option value="8">Alpinistični vzpon</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label>Označenost poti — preferenca</label>
+            <select id="reg-oznacenost" style="width:100%;padding:.55rem .9rem;border:1.5px solid var(--input-border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.85rem;background:var(--input-bg);color:var(--txt)">
+              <option value="vse">Vse poti</option>
+              <option value="oznacena">Samo označene poti</option>
+              <option value="mesano">Samo delno označene poti</option>
+              <option value="brezpotje">Samo brezpotje</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label>Najljubše gorovje</label>
+            <select id="reg-gorovje" style="width:100%;padding:.55rem .9rem;border:1.5px solid var(--input-border);border-radius:6px;font-family:'Outfit',sans-serif;font-size:.85rem;background:var(--input-bg);color:var(--txt)">
+              <option value="vse">Brez preference</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:.5rem;margin-top:.5rem">
+            <button class="modal-submit" style="background:transparent;border:1px solid var(--card-border);color:var(--txt2);flex:0 0 35%" onclick="regNazaj()">← Nazaj</button>
+            <button class="modal-submit" style="flex:1" onclick="registracija()">Ustvari račun →</button>
+          </div>
+        </div>
+      </div>
+      <!-- LOGIN -->
+      <div id="panel-login" style="display:none">
+        <div class="modal-field"><label>Uporabniško ime</label><input type="text" id="log-uporabnik" placeholder="janezk" autocapitalize="off" autocomplete="username"></div>
+        <div class="modal-field"><label>Geslo</label><input type="password" id="log-pass" placeholder="Geslo"></div>
+        <button class="modal-submit" onclick="prijava()">Prijava →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay" onclick="zapriDetail()"></div>
+<div class="detail-panel" id="detail-panel">
+  <div class="detail-header">
+    <h2 id="dp-ime">—</h2>
+    <div class="vrh" id="dp-vrh">—</div>
+    <button class="detail-close" onclick="zapriDetail()">✕</button>
+  </div>
+  <div class="detail-body">
+    <div class="detail-stats">
+      <div class="detail-stat"><div class="val" id="dp-hm">—</div><div class="lbl">vrh (m)</div></div>
+      <div class="detail-stat"><div class="val" id="dp-cas">—</div><div class="lbl">čas hoje</div></div>
+      <div class="detail-stat"><div class="val" id="dp-pril">—</div><div class="lbl">priljubljenost</div></div>
+    </div>
+
+    <!-- DODATNI PODATKI O POTI -->
+    <div class="detail-extra-info" id="dp-extra-info" style="display:none">
+      <div class="extra-row">
+        <div class="extra-item"><span class="lbl">Višinska razlika</span><span class="val" id="dp-vis-razlika">—</span></div>
+        <div class="extra-item"><span class="lbl">Višinska razlika po poti</span><span class="val" id="dp-vis-razlika-pot">—</span></div>
+      </div>
+      <div class="extra-row">
+        <div class="extra-item"><span class="lbl">Priporočena oprema (poletje)</span><span class="val" id="dp-oprema-poletje">—</span></div>
+        <div class="extra-item"><span class="lbl">Priporočena oprema (zima)</span><span class="val" id="dp-oprema-zima">—</span></div>
+      </div>
+    </div>
+
+    <!-- ZVEZDICE ZA OCENO POTI -->
+    <div class="detail-rating-box">
+      <div class="label">Kako si ti ocenjuješ to pot?</div>
+      <div class="row">
+        <div class="stars" id="dp-stars"></div>
+        <div class="summary" id="dp-rating-summary">še ni ocen</div>
+      </div>
+    </div>
+
+    <!-- ZVEZDICE ZA USTREZNOST PREDLOGA -->
+    <div class="detail-rating-box detail-rating-box-ustr" id="dp-ustreznost-wrap" style="display:none">
+      <div class="label">Kako ustrezen je bil ta predlog za tvoj profil?</div>
+      <div class="row">
+        <div class="stars" id="dp-stars-ustr"></div>
+        <div class="summary" id="dp-rating-summary-ustr">še ni ocen</div>
+      </div>
+    </div>
+
+    <div class="detail-section-label">Dostop do izhodišča</div>
+    <div class="collapsible collapsed" id="dp-dostop-wrap">
+      <div class="text" id="dp-dostop">—</div>
+      <button type="button" class="toggle-btn" id="dp-dostop-btn" onclick="preklopiOpis('dp-dostop-wrap','dp-dostop-btn')">
+        <span class="label">Preberi celoten dostop</span>
+        <span class="arrow">▾</span>
+      </button>
+    </div>
+
+    <div class="detail-section-label">Opis poti</div>
+    <div class="collapsible collapsed" id="dp-opis-wrap">
+      <div class="text" id="dp-opis">—</div>
+      <button type="button" class="toggle-btn" id="dp-opis-btn" onclick="preklopiOpis('dp-opis-wrap','dp-opis-btn')">
+        <span class="label">Preberi celotni opis</span>
+        <span class="arrow">▾</span>
+      </button>
+    </div>
+
+    <div class="detail-section-label">Oznake</div>
+    <div class="detail-tags" id="dp-tags"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── KONFIGURACIJA ────────────────────────────────
+const API = '/api';
+
+// State za re-roll
+let zadnjiProfil   = null;
+let prikazaneIds   = [];   // ID-ji vseh poti, ki so bile že prikazane (da jih re-roll izpusti)
+let trenutnaPotID  = null; // za detail panel (ocenjevanje)
+
+// ─── IDENTIFIKACIJA UPORABNIKA ZA OCENJEVANJE ─────
+// Prijavljen uporabnik ima ID "user-<X>", anonimni "anon-<uuid>".
+// Samo prijavljeni lahko ocenjujejo (gradijo CF znanje).
+// Gosti dobijo priporočila iz CF prijavljenih + svojega profila.
+function getUserId() {
+  try {
+    const sej = localStorage.getItem('grm_session');
+    if (sej) {
+      const u = JSON.parse(sej);
+      if (u && u.id) return 'user-' + u.id;
+    }
+  } catch(e) {}
+  let cid = localStorage.getItem('grm_client_id');
+  if (!cid) {
+    cid = 'anon-' + (crypto.randomUUID ? crypto.randomUUID() :
+      (Date.now() + '-' + Math.random().toString(36).slice(2)));
+    localStorage.setItem('grm_client_id', cid);
+  }
+  return cid;
+}
+
+function jePrijavljen() {
+  return getUserId().startsWith('user-');
+}
+
+// fetch wrapper, ki vedno pošlje X-User-Id header
+async function fetchZID(url, options = {}) {
+  const opts = {...options};
+  opts.headers = {...(opts.headers || {}), 'X-User-Id': getUserId()};
+  return fetch(url, opts);
+}
+
+// ─── NAVIGACIJA ───────────────────────────────────
+let _navHistory = ['home'];
+
+function navigate(view) {
+  const cur = _navHistory[_navHistory.length - 1];
+  if (cur !== view) _navHistory.push(view);
+
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + view);
+  if (navEl) navEl.classList.add('active');
+  if (view === 'stats')  naloziStatistike();
+  if (view === 'profil') naloziProfil();
+  zapriNavMobile();
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Pokaži/skrij back gumb
+  document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.style.display = _navHistory.length > 1 ? 'inline-flex' : 'none';
+  });
+  return false;
+}
+
+function navigateBack() {
+  if (_navHistory.length > 1) {
+    _navHistory.pop();
+    const prev = _navHistory[_navHistory.length - 1];
+    navigate(prev);
+    _navHistory.pop(); // navigate je dodal spet, popni
+    _navHistory.push(prev); // pravilno stanje
+  }
+}
+
+function toggleMobMenu() {
+  const dd = document.getElementById('mob-menu-dropdown');
+  dd.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mob-menu-dropdown')?.classList.remove('open');
+}
+function mobNavigate(view) {
+  closeMenu();
+  navigate(view);
+}
+// Zapri ob kliku zunaj
+document.addEventListener('click', e => {
+  const wrap = document.getElementById('mob-menu-wrap');
+  if (wrap && !wrap.contains(e.target)) closeMenu();
+});
+
+// ─── HAMBURGER MENI (mobile) ──────────────────────
+function toggleNav() {
+  const tog = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  const userBox = document.querySelector('.nav-user');
+  const isOpen = tog.classList.toggle('open');
+  links.classList.toggle('open', isOpen);
+  userBox.classList.toggle('open', isOpen);
+  tog.setAttribute('aria-expanded', String(isOpen));
+}
+
+function zapriNavMobile() {
+  document.getElementById('nav-toggle')?.classList.remove('open');
+  document.getElementById('nav-links')?.classList.remove('open');
+  document.querySelector('.nav-user')?.classList.remove('open');
+  document.getElementById('nav-toggle')?.setAttribute('aria-expanded', 'false');
+}
+
+// ─── PROFIL VIEW ──────────────────────────────────
+async function naloziProfil() {
+  const cont = document.getElementById('profil-content');
+  if (!jePrijavljen()) {
+    cont.innerHTML = `<div class="profil-empty" style="padding:3rem">
+      Za ogled profila se moraš prijaviti.<br>
+      <button class="btn-submit" style="margin-top:1.2rem" onclick="openModal('login')">Prijavi se</button>
+    </div>`;
+    return;
+  }
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div><p>Nalagam tvoje podatke...</p></div>';
+  try {
+    const r = await fetchZID(API + '/uporabnik');
+    const d = await r.json();
+    if (!d.uspeh) { cont.innerHTML = `<div class="profil-empty">Napaka: ${d.napaka || 'neznana'}</div>`; return; }
+    cont.innerHTML = profilHTML(d.podatki);
+  } catch(e) {
+    cont.innerHTML = `<div class="profil-empty">Strežnik ni dostopen.</div>`;
+  }
+}
+
+// ─── TEST AI VIEW ─────────────────────────────────
+// ─── ADMIN: prikaz uporabnikov ────────────────────
+async function prikaziUporabnike() {
+  const cont = document.getElementById('admin-uporabniki-content');
+  const geslo = document.getElementById('admin-geslo').value;
+  if (!geslo) { prikaziToast('Vpiši admin geslo'); return; }
+
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div><p>Nalagam...</p></div>';
+  try {
+    const r = await fetch(API + '/admin/uporabniki', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({admin_geslo: geslo})
+    });
+    const d = await r.json();
+    if (r.status === 401) {
+      cont.innerHTML = '<div class="test-verdict napaka">Napačno admin geslo</div>';
+      return;
+    }
+    if (!d.uspeh) {
+      cont.innerHTML = `<div class="test-verdict napaka">Napaka: ${d.napaka || 'neznana'}</div>`;
+      return;
+    }
+    cont.innerHTML = uporabnikiHTML(d.podatki);
+  } catch(e) {
+    cont.innerHTML = '<div class="test-verdict napaka">Strežnik ni dostopen</div>';
+  }
+}
+
+function uporabnikiHTML(d) {
+  if (d.st_uporabnikov === 0) {
+    return `<div class="test-result"><div class="profil-empty">Še nihče ni registriran. Registriraj prvega uporabnika preko gumba "Registracija" zgoraj desno.</div></div>`;
+  }
+  const fmtDatum = (ts) => {
+    const dat = new Date(ts * 1000);
+    return dat.toLocaleDateString('sl-SI') + ' ' + dat.toLocaleTimeString('sl-SI', {hour:'2-digit', minute:'2-digit'});
+  };
+  const vrstice = d.uporabniki.map(u => {
+    const profilTxt = u.profil
+      ? `${tezavnostLabel(u.profil.tezavnost || 4)} · ${oznacenostLabel(u.profil.oznacenost)} · ${escapeHtml(u.profil.gorovje || '—')}`
+      : '<i style="color:var(--txt3)">brez profila</i>';
+    return `
+      <div class="row match" style="grid-template-columns:auto auto 1fr auto">
+        <span class="user-avatar-mini">${escapeHtml(u.avatar || (u.ime||'?').charAt(0).toUpperCase())}</span>
+        <span class="pid" style="font-weight:700;color:var(--rjava)">${escapeHtml(u.uporabnik || '?')}</span>
+        <span class="pot">${escapeHtml(u.ime)} <span style="color:var(--txt3);font-weight:400">— ${profilTxt}</span></span>
+        <span class="meta">${fmtDatum(u.createdAt)}</span>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="test-verdict uspeh">
+      <strong>${d.st_uporabnikov} registriran${d.st_uporabnikov===1?'':'ih'} uporabnik${d.st_uporabnikov===1?'':'ov'}</strong>
+    </div>
+    <div class="test-result">
+      <div class="test-mini-list">${vrstice}</div>
+    </div>
+  `;
+}
+
+function profilHTML(p) {
+  const profilTxt = p.profil ? `
+    <div class="profil-stat-row"><span class="lbl">Težavnost poti (preference)</span><span class="val">${tezavnostLabel(p.profil.tezavnost || 4)}</span></div>
+    <div class="profil-stat-row"><span class="lbl">Označenost (preference)</span><span class="val">${oznacenostLabel(p.profil.oznacenost)}</span></div>
+    <div class="profil-stat-row"><span class="lbl">Regija</span><span class="val">${escapeHtml(p.profil.gorovje || '—')}</span></div>
+  ` : '<div class="profil-empty">Še nimaš shranjenega profila — pridobi nekaj priporočil ali oceni katero pot.</div>';
+
+  const ocenePotiTxt = p.ocene_poti.length === 0 ? '<div class="profil-empty">Še nisi ocenil nobene poti</div>' :
+    p.ocene_poti.slice(0, 12).map(o => {
+      const stars = '★'.repeat(o.moja_ocena) + '☆'.repeat(5 - o.moja_ocena);
+      return `<div class="profil-row-item" onclick="odpriDetail(${o.pot_id})">
+        <span class="stars-mini">${stars}</span>
+        <span class="pot-name">${escapeHtml(o.pot)}</span>
+        <span class="meta">${o.visina_m}m · ${formatCas(o.cas_min)}</span>
+      </div>`;
+    }).join('');
+
+  const oceneUstrTxt = p.ocene_ustreznosti.length === 0 ? '<div class="profil-empty">Še nisi ocenil ustreznosti predloga</div>' :
+    p.ocene_ustreznosti.slice(0, 12).map(o => {
+      const stars = '★'.repeat(o.moja_ocena) + '☆'.repeat(5 - o.moja_ocena);
+      return `<div class="profil-row-item" onclick="odpriDetail(${o.pot_id})">
+        <span class="stars-mini">${stars}</span>
+        <span class="pot-name">${escapeHtml(o.pot)}</span>
+        <span class="meta">profil: ${escapeHtml(o.profil_key)}</span>
+      </div>`;
+    }).join('');
+
+  return `
+    <div class="profil-grid">
+      <div class="profil-card">
+        <h3><span class="em">Tvoj profil</span></h3>
+        ${profilTxt}
+      </div>
+      <div class="profil-card">
+        <h3><span class="em">Statistika</span></h3>
+        <div class="profil-stat-row"><span class="lbl">Ocenjenih poti</span><span class="val">${p.st_ocen_poti}</span></div>
+        <div class="profil-stat-row"><span class="lbl">Ocen ustreznosti</span><span class="val">${p.st_ocen_ustreznosti}</span></div>
+        <div class="profil-stat-row"><span class="lbl">User ID</span><span class="val" style="font-family:monospace;font-size:.7rem">${escapeHtml(p.user_id)}</span></div>
+      </div>
+    </div>
+
+    <div class="profil-card" style="margin-bottom:1.2rem">
+      <h3><span class="em">Tvoje ocene poti</span> <span style="font-weight:400;font-size:.75rem;color:var(--txt3);margin-left:auto">(${p.st_ocen_poti})</span></h3>
+      <div class="profil-row-list">${ocenePotiTxt}</div>
+    </div>
+
+    <div class="profil-card">
+      <h3><span class="em">Tvoje ocene ustreznosti predlogov</span> <span style="font-weight:400;font-size:.75rem;color:var(--txt3);margin-left:auto">(${p.st_ocen_ustreznosti})</span></h3>
+      <div class="profil-row-list">${oceneUstrTxt}</div>
+    </div>
+  `;
+}
+
+// ─── SLIDER HELPERS ───────────────────────────────
+function fitnessLabel(v) {
+  return ['', 'Zelo slaba', 'Slaba', 'Srednja', 'Dobra', 'Odlična'][parseInt(v)];
+}
+function updateSlider(el, outId, fmt) {
+  document.getElementById(outId).textContent = fmt(el.value);
+}
+
+/**
+ * Posodobi dual slider — če min preseže max, ju izenači.
+ * key: 'visina' ali 'cas'.
+ */
+// Lista diskretnih časovnih vrednosti (indeks 0-13 → minute)
+// 13 = "več kot 7 h" (interno 480, ki vključuje vse poti nad 420min)
+const CAS_VREDNOSTI = [0, 15, 30, 45, 60, 90, 120, 150, 180, 240, 300, 360, 420, 480];
+
+/**
+ * Pretvori slider indeks (0-13) v dejansko število minut.
+ */
+function casIndexVMinute(idx) {
+  const i = parseInt(idx);
+  if (isNaN(i)) return 0;
+  if (i >= CAS_VREDNOSTI.length) return CAS_VREDNOSTI[CAS_VREDNOSTI.length - 1];
+  if (i < 0) return 0;
+  return CAS_VREDNOSTI[i];
+}
+
+/**
+ * Inverz: poišče slider indeks (0-13), ki najbolje ustreza danemu številu minut.
+ */
+function minVCasIndex(min) {
+  if (min >= 9999 || min >= 480) return 13;  // "več kot 7 h"
+  let best = 0;
+  let bestDiff = Infinity;
+  for (let i = 0; i < CAS_VREDNOSTI.length; i++) {
+    const diff = Math.abs(CAS_VREDNOSTI[i] - min);
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      best = i;
+    }
+  }
+  return best;
+}
+
+function updateDual(key) {
+  const min = document.getElementById('min_' + key);
+  const max = document.getElementById('max_' + key);
+  if (parseInt(min.value) > parseInt(max.value)) {
+    // user povleče min nad max -> potisni max gor (ali min dol)
+    if (event && event.target === min) max.value = min.value;
+    else                                min.value = max.value;
+  }
+  if (key === 'visina') {
+    // Pri max=2500 prikaži "2500+m" (= ni omejitve, vključuje Triglav)
+    const minVal = parseInt(min.value);
+    const maxVal = parseInt(max.value);
+    document.getElementById('min-visina-val').textContent = (minVal === 2500 ? '2500+m' : minVal + 'm');
+    document.getElementById('max-visina-val').textContent = (maxVal === 2500 ? '2500+m' : maxVal + 'm');
+  } else if (key === 'cas') {
+    // Slider ima indeks 0-13, ki ga preslikamo na konkretne min
+    const minMin = casIndexVMinute(min.value);
+    const maxMin = casIndexVMinute(max.value);
+    document.getElementById('min-cas-val').textContent = formatCas(minMin, parseInt(min.value));
+    document.getElementById('max-cas-val').textContent = formatCas(maxMin, parseInt(max.value));
+  }
+}
+
+/**
+ * Pretvori minute v lep prikaz: 90 -> "1 h 30 min", 120 -> "2 h", 45 -> "45 min".
+ * Če je podan indeks 13 (zadnji), prikaže "več kot 7 h" namesto "8 h".
+ */
+function formatCas(min, idx) {
+  if (idx === 13) return 'več kot 7 h';
+  if (min === 0) return '0 min';
+  if (min < 60) return `${min} min`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  return m === 0 ? `${h} h` : `${h} h ${m} min`;
+}
+
+// ─── NALOŽI FILTRE ────────────────────────────────
+async function naloziFiltre() {
+  try {
+    const r = await fetch(API + '/filtri');
+    const d = await r.json();
+    if (!d.uspeh) return;
+    const sel = document.getElementById('gorovje');
+    d.podatki.gorovja.forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g; opt.textContent = g;
+      sel.appendChild(opt);
+    });
+  } catch(e) { console.warn('API ni dostopen — demo mode'); }
+}
+
+// ─── PRIPOROČILA ──────────────────────────────────
+function zberiProfil() {
+  const maxVis = parseInt(document.getElementById('max_visina').value);
+  const minVis = parseInt(document.getElementById('min_visina').value);
+  const minCasIdx = parseInt(document.getElementById('min_cas').value);
+  const maxCasIdx = parseInt(document.getElementById('max_cas').value);
+  const minCasMin = casIndexVMinute(minCasIdx);
+  const maxCasMin = maxCasIdx === 13 ? 9999 : casIndexVMinute(maxCasIdx);
+  return {
+    tezavnost:  parseInt(document.getElementById('tezavnost').value),
+    gorovje:    document.getElementById('gorovje').value,
+    min_visina: minVis,
+    max_visina: maxVis >= 2500 ? 9999 : maxVis,
+    min_cas:    minCasMin,
+    max_cas:    maxCasMin,
+    oznacenost: document.getElementById('oznacenost').value,
+  };
+}
+
+async function pridobiPriporocila() {
+  const btn = document.getElementById('btn-priporoči');
+  btn.disabled = true;
+  btn.textContent = 'Iščem poti...';
+
+  zadnjiProfil = zberiProfil();
+  prikazaneIds = [];
+  window._iskanjeMode = false;  // ponastavi flag
+
+  await nalogaVrhov(zadnjiProfil);
+
+  btn.disabled = false;
+  btn.textContent = 'Poišči poti';
+}
+
+/**
+ * Uporabi profil shranjen na backendu (iz prejšnjih ocen / interakcij).
+ * Samo za prijavljene uporabnike — pri gostu ni shranjenega profila.
+ */
+async function pridobiPriporocilaIzProfila() {
+  if (!jePrijavljen()) {
+    prikaziToast('Za uporabo shranjenega profila se prijavi ');
+    setTimeout(() => openModal('login'), 600);
+    return;
+  }
+  const btn = document.getElementById('btn-priporoci-profil');
+  btn.disabled = true;
+  btn.textContent = 'Nalagam...';
+
+  try {
+    const r = await fetchZID(API + '/uporabnik');
+    const d = await r.json();
+    if (!d.uspeh || !d.podatki.profil) {
+      prikaziToast('Nimaš še shranjenega profila — najprej oceni katero pot ali pridobi priporočila ročno.');
+      btn.disabled = false;
+      btn.textContent = 'Priporoči glede na moj profil';
+      return;
+    }
+    const p = d.podatki.profil;
+    napolniFormIzProfila(p);
+    if (p.min_visina !== undefined && p.min_visina >= 0) {
+      document.getElementById('min_visina').value = p.min_visina;
+    }
+    if (p.max_visina > 0) {
+      document.getElementById('max_visina').value = p.max_visina;
+    }
+    updateDual('visina');
+    if (p.min_cas !== undefined && p.min_cas >= 0) {
+      document.getElementById('min_cas').value = minVCasIndex(p.min_cas);
+    }
+    if (p.max_cas > 0) {
+      document.getElementById('max_cas').value = minVCasIndex(p.max_cas);
+    }
+    updateDual('cas');
+
+    btn.textContent = 'Računam...';
+    zadnjiProfil = zberiProfil();
+    prikazaneIds = [];
+    window._iskanjeMode = false;
+    await nalogaVrhov(zadnjiProfil);
+    prikaziToast('Priporočila po tvojem shranjenem profilu ✓');
+  } catch(e) {
+    prikaziToast('Strežnik ni dostopen');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Priporoči glede na moj profil';
+}
+
+// ─── STANJE LAZY LOAD ─────────────────────────────
+let _lazyProfil    = null;   // profil za katerega nalagamo
+let _lazyOffset    = 0;      // trenutni offset
+let _lazyNalagam   = false;  // prepreči dvojni klic
+let _lazyZadnja    = false;  // ali smo že na koncu
+let _lazyVsiVrhi   = [];     // vsi naloženi vrhi (za sort)
+let _lazySortNacin = 'default';
+let _lazySkupaj    = 0;      // skupaj_najdenih iz backenda
+let _lazyObserver  = null;   // IntersectionObserver
+
+async function nalogaVrhov(profil) {
+  const sec = document.getElementById('results-section');
+  const container = document.getElementById('results-container');
+
+  // Reset stanja
+  _lazyProfil    = profil;
+  _lazyOffset    = 0;
+  _lazyNalagam   = false;
+  _lazyZadnja    = false;
+  _lazyVsiVrhi   = [];
+  _lazySortNacin = 'default';
+
+  // Reset sort gumbe
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === 'default'));
+
+  // Pokaži loading
+  sec.style.display = 'block';
+  container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Iščem ustrezne poti...</p></div>';
+  sec.scrollIntoView({behavior:'smooth', block:'start'});
+
+  // Ustavi star observer
+  if (_lazyObserver) { _lazyObserver.disconnect(); _lazyObserver = null; }
+
+  await _nalagaBatch(true);
+}
+
+async function _nalagaBatch(prvi = false) {
+  if (_lazyNalagam || _lazyZadnja) return;
+  _lazyNalagam = true;
+
+  const container = document.getElementById('results-container');
+
+  try {
+    const r = await fetchZID(API + '/priporocila_vrhi', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({..._lazyProfil, user_id: getUserId(), offset: _lazyOffset})
+    });
+    const d = await r.json();
+
+    if (!d.uspeh) {
+      if (prvi) {
+        prikaziToast('Napaka API: ' + (d.napaka || 'neznana'), 5000);
+        document.getElementById('results-section').style.display = 'none';
+      }
+      _lazyNalagam = false;
+      return;
+    }
+
+    const vrhi = d.podatki.vrhi || [];
+    _lazySkupaj = d.podatki.skupaj_najdenih || 0;
+    _lazyZadnja = d.podatki.je_zadnja;
+    _lazyOffset += vrhi.length;
+    _lazyVsiVrhi = _lazyVsiVrhi.concat(vrhi);
+
+    if (prvi && vrhi.length === 0) {
+      prikaziToast('V bazi ni poti, ki bi ustrezale profilu. Razširi filter', 5000);
+      document.getElementById('results-section').style.display = 'none';
+      _lazyNalagam = false;
+      return;
+    }
+
+    // Posodobi naslov
+    const prikazanih = _lazyVsiVrhi.length;
+    document.getElementById('results-title').textContent =
+      _lazyZadnja ? `${prikazanih} priporočenih vrhov` : `${prikazanih} od ${_lazySkupaj} vrhov`;
+    document.getElementById('results-sub').textContent =
+      `${d.podatki.skupaj_poti} poti · Težavnost: ${tezavnostLabel(_lazyProfil.tezavnost)} · ${_lazyProfil.min_visina||0}–${_lazyProfil.max_visina>=9999?'2500+':_lazyProfil.max_visina}m · ${oznacenostLabel(_lazyProfil.oznacenost)}`;
+
+    // Prikaži vrhe (prvi batch zamenja, ostali dodajajo)
+    if (prvi) {
+      container.innerHTML = `<div class="vrhi-grid" id="vrhi-grid"></div><div id="lazy-sentinel"></div>`;
+    }
+    const grid = document.getElementById('vrhi-grid');
+    const startIdx = _lazyVsiVrhi.length - vrhi.length;
+    vrhi.forEach((v, i) => {
+      grid.insertAdjacentHTML('beforeend', vrhCardHTML(v, startIdx + i));
+    });
+
+    // Odstrani loading indikator v sentinel-u
+    const sentinel = document.getElementById('lazy-sentinel');
+    if (sentinel) sentinel.innerHTML = _lazyZadnja ? '' :
+      '<div style="text-align:center;padding:1.5rem;color:var(--txt3);font-size:.82rem">Nalagam več vrhov...</div>';
+
+    // Nastavi IntersectionObserver za naslednji batch
+    if (!_lazyZadnja && sentinel) {
+      if (_lazyObserver) _lazyObserver.disconnect();
+      _lazyObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) _nalagaBatch();
+      }, {rootMargin: '200px'});
+      _lazyObserver.observe(sentinel);
+    }
+
+  } catch(e) {
+    console.error('nalagaBatch error:', e);
+    if (prvi) {
+      prikaziToast('Strežnik se ne odziva. Preveri internetno povezavo in poskusi znova.', 5000);
+      document.getElementById('results-section').style.display = 'none';
+    }
+  }
+  _lazyNalagam = false;
+}
+
+function prikaziVrhe(vrhi, meta, profil) {
+  // Legacy wrapper — ni več direktno klican, ostane za sort
+  const sec = document.getElementById('results-section');
+  const container = document.getElementById('results-container');
+  sec.style.display = 'block';
+  window._zadnjiVrhi = vrhi;
+  container.innerHTML = `<div class="vrhi-grid">${vrhi.map((v,i) => vrhCardHTML(v, i)).join('')}</div>`;
+}
+
+function sortVrhe(nacin) {
+  if (!_lazyVsiVrhi.length) return;
+  _lazySortNacin = nacin;
+
+  // Ko sortiramo, ustavi lazy load (prikaže vse kar je naloženo, sortirano)
+  if (_lazyObserver) { _lazyObserver.disconnect(); _lazyObserver = null; }
+
+  const vrhi = [..._lazyVsiVrhi];
+  if (nacin === 'az') {
+    vrhi.sort((a, b) => (a.vrh || '').localeCompare(b.vrh || '', 'sl'));
+  } else if (nacin === 'cas-asc') {
+    vrhi.sort((a, b) => (a.min_cas || 0) - (b.min_cas || 0));
+  } else if (nacin === 'cas-desc') {
+    vrhi.sort((a, b) => (b.max_cas || 0) - (a.max_cas || 0));
+  } else if (nacin === 'vis-asc') {
+    vrhi.sort((a, b) => (a.visina_m || 0) - (b.visina_m || 0));
+  } else if (nacin === 'vis-desc') {
+    vrhi.sort((a, b) => (b.visina_m || 0) - (a.visina_m || 0));
+  } else if (nacin === 'pril-desc') {
+    vrhi.sort((a, b) => (b.priljubljenost || 0) - (a.priljubljenost || 0));
+  } else if (nacin === 'pril-asc') {
+    vrhi.sort((a, b) => (a.priljubljenost || 0) - (b.priljubljenost || 0));
+  }
+
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === nacin));
+  const container = document.getElementById('results-container');
+  container.innerHTML = `<div class="vrhi-grid">${vrhi.map((v,i) => vrhCardHTML(v, i)).join('')}</div>`;
+
+  // Če nismo naložili vseh, naloži preostanek ob kliku sorta
+  if (!_lazyZadnja && nacin !== 'default') {
+    prikaziToast(`Nalagam vse vrhove za sortiranje...`, 2000);
+    _nalagaVse();
+  }
+}
+
+async function _nalagaVse() {
+  while (!_lazyZadnja) {
+    await _nalagaBatch();
+    await new Promise(res => setTimeout(res, 100));
+  }
+  // Po nalaganju vseh, re-sort
+  sortVrhe(_lazySortNacin);
+}
+
+function vrhCardHTML(v, idx) {
+  const potiHTML = v.poti.map(p => potRowHTML(p)).join('');
+
+  // Čas: razpon ali ena vrednost
+  const casTxt = (v.min_cas && v.max_cas)
+    ? (v.min_cas === v.max_cas ? formatCas(v.min_cas) : `${formatCas(v.min_cas)} – ${formatCas(v.max_cas)}`)
+    : '—';
+  // Težavnosti — npr. "Lahka, Zahtevna". Če manjkajo ali so samo 'Ni podatka',
+  // fallback na težavnost najboljše poti (prve v sortiranem seznamu).
+  const tezBrezPodatka = (v.tezavnosti || []).filter(t => t && t !== 'Ni podatka');
+  let tezTxt;
+  if (tezBrezPodatka.length) {
+    tezTxt = tezBrezPodatka.join(', ');
+  } else if (v.poti && v.poti.length && v.poti[0].tezavnost) {
+    // Fallback: vzemi iz najboljše poti (ki je prva, ker so sortirane po score)
+    tezTxt = v.poti[0].tezavnost;
+  } else {
+    tezTxt = 'Ni podatka';
+  }
+  // Število poti (slovenska oblika: 1 pot, 2 poti, 3 poti, 4 poti, 5+ poti)
+  const stPotiTxt = `${v.st_poti} ${v.st_poti === 1 ? 'pot' : 'poti'}`;
+
+  return `
+  <div class="vrh-card" id="vrh-${idx}">
+    <div class="vrh-card-header" onclick="toggleVrh('${idx}')">
+      <div class="vrh-card-left">
+        <div class="vrh-name">${escapeHtml(v.vrh)}</div>
+        <div class="vrh-gorovje">${escapeHtml(v.gorovje)}</div>
+        <div class="vrh-stats-grid">
+          <div class="vrh-stat-item">
+            <div class="vrh-stat-lbl">Nadm. višina</div>
+            <div class="vrh-stat-val">${v.visina_m} m</div>
+          </div>
+          <div class="vrh-stat-item">
+            <div class="vrh-stat-lbl">Priljubljenost</div>
+            <div class="vrh-stat-val">${v.priljubljenost}%</div>
+          </div>
+          <div class="vrh-stat-item">
+            <div class="vrh-stat-lbl">Čas hoje</div>
+            <div class="vrh-stat-val">${casTxt}</div>
+          </div>
+          <div class="vrh-stat-item">
+            <div class="vrh-stat-lbl">Težavnost</div>
+            <div class="vrh-stat-val">${escapeHtml(tezTxt)}</div>
+          </div>
+          <div class="vrh-stat-item">
+            <div class="vrh-stat-lbl">Število poti</div>
+            <div class="vrh-stat-val">${stPotiTxt}</div>
+          </div>
+        </div>
+      </div>
+      <div class="vrh-card-right">
+        <span class="vrh-chevron" id="chev-${idx}">▾</span>
+      </div>
+    </div>
+    <div class="vrh-poti-lista" id="poti-${idx}">
+      ${potiHTML}
+    </div>
+  </div>`;
+}
+
+function potRowHTML(p) {
+  const vrRaw   = p.visinska_razlika      || (p.visina_m ? p.visina_m + ' m' : '—');
+  const vrPot   = p.visinska_razlika_pot  || '—';
+  const cas     = p.cas_min ? formatCas(p.cas_min) : '—';
+
+  return `
+  <div class="pot-row" onclick="odpriDetail(${p.id})">
+    <div class="pot-row-left">
+      <div class="pot-row-name">${escapeHtml(p.pot)}</div>
+      <div class="pot-row-stats">
+        <span class="pot-stat-pill highlight">↑ ${escapeHtml(vrRaw)}</span>
+        <span class="pot-stat-pill">↕ ${escapeHtml(vrPot)}</span>
+        <span class="pot-stat-pill">${cas}</span>
+        <span class="tag tag-teza" style="font-size:.6rem">${escapeHtml(p.tezavnost)}</span>
+        <span class="tag tag-oz" style="font-size:.6rem">${escapeHtml(p.oznacenost)}</span>
+      </div>
+    </div>
+    <div class="pot-row-right">
+      <span style="color:var(--txt3);font-size:.85rem">›</span>
+    </div>
+  </div>`;
+}
+
+function toggleVrh(idx) {
+  const lista = document.getElementById('poti-' + idx);
+  const header = document.querySelector(`#vrh-${idx} .vrh-card-header`);
+  const chev = document.getElementById('chev-' + idx);
+  const isOpen = lista.classList.contains('open');
+  lista.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+
+function prikaziRezultate(poti, profil) {
+  // Ohrani za backward kompatibilnost (isciPoti)
+  const sec = document.getElementById('results-section');
+  const container = document.getElementById('results-container');
+  sec.style.display = 'block';
+  document.getElementById('results-title').textContent = `${poti.length} najdenih poti`;
+  document.getElementById('results-sub').textContent = 'Rezultati iskanja';
+  container.innerHTML = `<div class="trail-grid">${poti.map(p => trailCardHTML(p, true)).join('')}</div>`;
+  sec.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
+
+function izkusnjeLabel(v) {
+  return {zacetnik:'Začetnik', srednja:'Srednji', zahtevni:'Zahtevni', zelo_zahtevno:'Zelo zahtevno'}[v] || v;
+}
+function tezavnostLabel(v) {
+  return {
+    1:'Brez preference',
+    2:'Lahka pot',
+    3:'Lahko brezpotje',
+    4:'Delno zahtevna pot',
+    5:'Zahtevna pot',
+    6:'Zelo zahtevna pot',
+    7:'Izjemno zahtevna pot',
+    8:'Alpinistični vzpon',
+  }[parseInt(v)] || '?';
+}
+function oznacenostLabel(v) {
+  return {vse:'vse poti', oznacena:'samo označene', mesano:'delno označene', brezpotje:'samo brezpotje'}[v] || v;
+}
+
+function trailCardHTML(p, skrijScore=false) {
+  const scoreBadge = '';
+  const scoreBar   = '';
+
+  // ── 1) Ocena POTI (splošna, kvaliteta same poti) ──
+  const ur = p.user_rating || {povprecje:null, stevilo_ocen:0, moja_ocena:null, ze_ocenjeno:false};
+  const povp = ur.povprecje;
+  const moja = ur.moja_ocena;
+  const locked = !!ur.ze_ocenjeno;
+  const prikazNum = moja !== null && moja !== undefined ? moja
+                   : (povp !== null ? Math.round(povp) : 0);
+  const starsHTML = [1,2,3,4,5].map(i => {
+    const active = i <= prikazNum;
+    const cls = `star ${active?'active':''} ${locked?'locked':''}`;
+    const click = locked ? '' : `onclick="event.stopPropagation();oceniIzKartice(${p.id},${i})"`;
+    return `<span class="${cls}" ${click}>★</span>`;
+  }).join('');
+
+  let ratingInfo;
+  if (locked) {
+    ratingInfo = `<b>tvoja: ${moja}★</b> · povp. ${povp}★ (${ur.stevilo_ocen})`;
+  } else if (ur.stevilo_ocen > 0) {
+    ratingInfo = `<b>${povp}★</b> (${ur.stevilo_ocen})`;
+  } else {
+    ratingInfo = `<span>še ni ocen</span>`;
+  }
+
+  // ── 2) Ocena USTREZNOSTI PREDLOGA (samo pri priporočilih, ne v iskanju) ──
+  // Prikazujemo samo če imamo `score` (torej rezultat priporočila) IN profil obstaja.
+  let ustreznostBlok = '';
+  const kazeUstreznost = !skrijScore && score !== null && zadnjiProfil !== null;
+  if (kazeUstreznost) {
+    const us = p.ustreznost || {povprecje:null, stevilo_ocen:0, moja_ocena:null, ze_ocenjeno:false};
+    const usPovp = us.povprecje;
+    const usMoja = us.moja_ocena;
+    const usLocked = !!us.ze_ocenjeno;
+    const usPrikaz = usMoja !== null && usMoja !== undefined ? usMoja
+                   : (usPovp !== null ? Math.round(usPovp) : 0);
+    const usStars = [1,2,3,4,5].map(i => {
+      const active = i <= usPrikaz;
+      const cls = `star ${active?'active':''} ${usLocked?'locked':''}`;
+      const click = usLocked ? '' : `onclick="event.stopPropagation();oceniUstreznost(${p.id},${i})"`;
+      return `<span class="${cls}" ${click}>★</span>`;
+    }).join('');
+
+    let usInfo;
+    if (usLocked) {
+      usInfo = `<b>tvoja: ${usMoja}★</b>${us.stevilo_ocen > 1 ? ` · povp. ${usPovp}★ (${us.stevilo_ocen})` : ''}`;
+    } else if (us.stevilo_ocen > 0) {
+      usInfo = `povp. <b>${usPovp}★</b> (${us.stevilo_ocen})`;
+    } else {
+      usInfo = `še ni ocen`;
+    }
+
+    ustreznostBlok = `
+        <div class="rating-row rating-row-ustr" title="Kako ustrezen je ta predlog glede na tvoj profil?">
+          <div class="rating-label">ustreznost</div>
+          <div class="stars" data-pid-ustr="${p.id}">${usStars}</div>
+          <div class="rating-info">${usInfo}</div>
+        </div>`;
+  }
+
+  return `
+  <div class="trail-card" onclick="odpriDetail(${p.id})">
+    <div class="trail-card-top">
+      ${scoreBadge}
+      <h3>${escapeHtml(p.pot)}</h3>
+      <div class="vrh">${escapeHtml(p.vrh)} · ${escapeHtml(p.gorovje)}</div>
+    </div>
+    <div class="trail-card-body">
+      <div class="trail-stats trail-stats-3">
+        <div class="stat"><div class="val">${p.visina_m}m</div><div class="lbl">višina</div></div>
+        <div class="stat"><div class="val">${formatCas(p.cas_min)}</div><div class="lbl">čas</div></div>
+        <div class="stat"><div class="val">${p.priljubljenost}%</div><div class="lbl">priljubljenost</div></div>
+      </div>
+      <div class="trail-tags">
+        <span class="tag tag-teza">${escapeHtml(p.tezavnost)}</span>
+        <span class="tag tag-oz">${escapeHtml(p.oznacenost)}</span>
+        <span class="tag tag-reg">${escapeHtml(p.gorovje)}</span>
+      </div>
+      ${scoreBar}
+      <div class="card-rating-combo">
+        <div class="rating-row" title="Oceni sámo pot (kvaliteta poti, ne glede na tvoj profil)">
+          <div class="rating-label">ocena poti</div>
+          <div class="stars" data-pid="${p.id}">${starsHTML}</div>
+          <div class="rating-info">${ratingInfo}</div>
+        </div>
+        ${ustreznostBlok}
+      </div>
+    </div>
+  </div>`;
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// Demo poti ko API ni dostopen
+// ─── ISKANJE ──────────────────────────────────────
+function heroIsci() {
+  const q = document.getElementById('hero-search-input').value.trim();
+  if (!q) return;
+  // Prenesi query v pravo iskalno polje in navigiraj na search view
+  document.getElementById('search-input').value = q;
+  navigate('search');
+  isciPoti();
+}
+
+async function isciPoti() {
+  const q = document.getElementById('search-input').value.trim();
+  if (q.length < 2) return;
+  const container = document.getElementById('search-results');
+  container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Iščem...</p></div>';
+  try {
+    // Pri iskanju zviša limit, da grupiranje po vrhu dela smiselno
+    const r = await fetchZID(API + `/iskanje?q=${encodeURIComponent(q)}&limit=50`);
+    const d = await r.json();
+    if (!d.uspeh || !d.podatki.poti || d.podatki.poti.length === 0) {
+      container.innerHTML = `<p style="color:var(--txt3);padding:2rem;text-align:center">Ni rezultatov za "${escapeHtml(q)}"</p>`;
+      return;
+    }
+
+    const poti = d.podatki.poti;
+
+    // Heuristika: če query vsebuje " - " (= ime poti tipa "Izhodišče - Cilj"),
+    // user išče konkretno pot → prikaže poti direktno.
+    // Sicer grupiraj po vrhu in prikaže vrh-cards (kot pri priporočilih).
+    const iscePot = /\s-\s/.test(q);
+
+    if (iscePot) {
+      // Direktni seznam poti — uporabi trail kartice (kot prej)
+      container.innerHTML = `
+        <p style="color:var(--txt3);font-size:.82rem;margin-bottom:1rem">Najdenih ${poti.length} poti za "${escapeHtml(q)}"</p>
+        <div class="trail-grid">${poti.map(p => trailCardHTML(p, true)).join('')}</div>`;
+    } else {
+      // Grupiraj po vrhu
+      const vrhiMap = {};
+      poti.forEach(p => {
+        const vrh = p.vrh;
+        if (!vrhiMap[vrh]) {
+          vrhiMap[vrh] = {
+            vrh:       vrh,
+            gorovje:   p.gorovje,
+            visina_m:  p.visina_m,
+            _pril_sum: 0,
+            _pril_n:   0,
+            min_cas:   p.cas_min,
+            max_cas:   p.cas_min,
+            _tezavnosti: new Set(),
+            poti:      []
+          };
+        }
+        const v = vrhiMap[vrh];
+        v.poti.push(p);
+        if (p.visina_m > v.visina_m) v.visina_m = p.visina_m;
+        v._pril_sum += p.priljubljenost || 0;
+        v._pril_n   += 1;
+        if (p.cas_min > 0) {
+          if (v.min_cas === 0 || p.cas_min < v.min_cas) v.min_cas = p.cas_min;
+          if (p.cas_min > v.max_cas) v.max_cas = p.cas_min;
+        }
+        if (p.tezavnost) v._tezavnosti.add(p.tezavnost);
+      });
+      const vrhiSeznam = Object.values(vrhiMap).map(v => {
+        v.priljubljenost = v._pril_n > 0 ? Math.round(v._pril_sum / v._pril_n) : 0;
+        v.tezavnosti = Array.from(v._tezavnosti).sort();
+        v.st_poti = v.poti.length;
+        v.best_score = null;  // pri iskanju ne prikažemo % ujemanja
+        delete v._pril_sum; delete v._pril_n; delete v._tezavnosti;
+        return v;
+      });
+      // Razvrsti po priljubljenosti desc
+      vrhiSeznam.sort((a, b) => (b.priljubljenost || 0) - (a.priljubljenost || 0));
+
+      // Zapomni si, da je to "iskanje" — globalni flag, da odpriDetail (kasneje)
+      // ne pošlje profila za ustreznost
+      window._iskanjeMode = true;
+
+      container.innerHTML = `
+        <p style="color:var(--txt3);font-size:.82rem;margin-bottom:1rem">
+          Najdenih ${vrhiSeznam.length} vrhov (${poti.length} poti) za "${escapeHtml(q)}"
+        </p>
+        <div class="vrhi-grid">${vrhiSeznam.map((v,i) => vrhCardHTML(v, 'search-' + i)).join('')}</div>`;
+    }
+  } catch(e) {
+    container.innerHTML = `<p style="color:var(--txt3);padding:2rem;text-align:center">Strežnik ni dostopen. Zaženi: python3 app.py</p>`;
+  }
+}
+
+// ─── DETAIL PANEL ─────────────────────────────────
+async function odpriDetail(potId) {
+  trenutnaPotID = potId;
+  document.getElementById('detail-overlay').classList.add('open');
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('dp-ime').textContent = 'Nalagam...';
+  document.getElementById('dp-opis').textContent = '';
+  document.getElementById('dp-dostop').textContent = '';
+  document.getElementById('dp-opis-btn').style.display = 'none';
+  document.getElementById('dp-dostop-btn').style.display = 'none';
+  document.getElementById('dp-stars').innerHTML = '';
+  try {
+    let url = API + '/pot/' + potId;
+    // Pri iskanju (window._iskanjeMode) NE pošljemo profila —
+    // ustreznost se ne prikaže, prikaže se samo ocena poti.
+    if (zadnjiProfil && !window._iskanjeMode) {
+      const q = new URLSearchParams({
+        tezavnost:  zadnjiProfil.tezavnost,
+        gorovje:    zadnjiProfil.gorovje,
+        oznacenost: zadnjiProfil.oznacenost,
+      });
+      url += '?' + q.toString();
+    }
+    const r = await fetchZID(url);
+    const d = await r.json();
+    if (d.uspeh) prikaziDetail(d.podatki.pot);
+  } catch(e) {
+    document.getElementById('dp-ime').textContent = 'Podatki nedostopni';
+  }
+}
+
+function prikaziDetail(p) {
+  trenutnaPotID = p.id;
+  document.getElementById('dp-ime').textContent = p.pot;
+  document.getElementById('dp-vrh').textContent = `${p.vrh} · ${p.gorovje}`;
+  document.getElementById('dp-hm').textContent  = p.visina_m + 'm';
+  document.getElementById('dp-cas').textContent = formatCas(p.cas_min);
+  document.getElementById('dp-pril').textContent = p.priljubljenost + '%';
+
+  // Dodatni podatki o poti (višinska razlika, oprema)
+  const visRazlika    = p.visinska_razlika      || '';
+  const visRazlikaPot = p.visinska_razlika_pot  || '';
+  const opremaPolet   = p.oprema_poletje        || 'ni priporočil';
+  const opremaZima    = p.oprema_zima           || 'ni priporočil';
+  const imaKaj = visRazlika || visRazlikaPot || opremaPolet !== 'ni priporočil' || opremaZima !== 'ni priporočil';
+
+  document.getElementById('dp-extra-info').style.display = imaKaj ? '' : 'none';
+  document.getElementById('dp-vis-razlika').textContent     = visRazlika    || '—';
+  document.getElementById('dp-vis-razlika-pot').textContent = visRazlikaPot || '—';
+  document.getElementById('dp-oprema-poletje').textContent  = opremaPolet;
+  document.getElementById('dp-oprema-zima').textContent     = opremaZima;
+
+  // CELOTEN opis + dostop. Privzeto je skrčen, gumb razpre.
+  nastaviCollapsible('dp-opis-wrap',   'dp-opis',   'dp-opis-btn',
+                     p.opis   || '', 'Preberi celotni opis', 'Prikaži manj opisa');
+  nastaviCollapsible('dp-dostop-wrap', 'dp-dostop', 'dp-dostop-btn',
+                     p.dostop || '', 'Preberi celoten dostop', 'Prikaži manj dostopa');
+
+  document.getElementById('dp-tags').innerHTML = `
+    <span class="tag tag-teza">${escapeHtml(p.tezavnost)}</span>
+    <span class="tag tag-oz">${escapeHtml(p.oznacenost)}</span>
+    <span class="tag tag-reg">${escapeHtml(p.gorovje)}</span>
+    ${p.zahtevnost_orig ? `<span class="tag tag-teza">${escapeHtml(p.zahtevnost_orig)}</span>` : ''}`;
+
+  narediZvezdiceDetail(p);
+}
+
+/**
+ * Postavi opis/dostop v collapsed stanje. Gumb se skrije, če je besedilo kratko
+ * ali prazno; polno besedilo je vedno v DOM-u (brez '...').
+ */
+function nastaviCollapsible(wrapId, textId, btnId, vsebina, labelVec, labelMalo) {
+  const wrap = document.getElementById(wrapId);
+  const text = document.getElementById(textId);
+  const btn  = document.getElementById(btnId);
+  const btnLbl = btn.querySelector('.label');
+
+  const prazen = !vsebina || !vsebina.trim();
+  text.textContent = prazen ? '— ni na voljo —' : vsebina;
+  text.classList.toggle('empty', prazen);
+
+  // Resetiraj v collapsed stanje
+  wrap.classList.remove('expanded');
+  wrap.classList.add('collapsed');
+  btnLbl.textContent = labelVec;
+  btn.dataset.labelVec  = labelVec;
+  btn.dataset.labelMalo = labelMalo;
+
+  // Skrij gumb, če besedilo ni dovolj dolgo za rezanje (ali je prazno)
+  // Merimo po scrollHeight vs. clientHeight v naslednjem tiku, ko se render zgodi.
+  requestAnimationFrame(() => {
+    const potreben = !prazen && text.scrollHeight > text.clientHeight + 4;
+    btn.style.display = potreben ? 'inline-flex' : 'none';
+    // če ni potreben (kratek opis), razpri celoten prikaz (brez fade gradienta)
+    if (!potreben) {
+      wrap.classList.remove('collapsed');
+      wrap.classList.add('expanded');
+    }
+  });
+}
+
+function preklopiOpis(wrapId, btnId) {
+  const wrap = document.getElementById(wrapId);
+  const btn  = document.getElementById(btnId);
+  const lbl  = btn.querySelector('.label');
+  const jeZaprt = wrap.classList.contains('collapsed');
+  wrap.classList.toggle('collapsed', !jeZaprt);
+  wrap.classList.toggle('expanded',   jeZaprt);
+  lbl.textContent = jeZaprt ? (btn.dataset.labelMalo || 'Prikaži manj')
+                            : (btn.dataset.labelVec  || 'Preberi več');
+}
+
+function narediZvezdiceDetail(p) {
+  const ur = p.user_rating || {povprecje:null, stevilo_ocen:0, moja_ocena:null, ze_ocenjeno:false};
+  const povp = ur.povprecje;
+  const moja = ur.moja_ocena;
+  const locked = !!ur.ze_ocenjeno;
+  const cont = document.getElementById('dp-stars');
+
+  // Če je uporabnik že ocenil, prikaži NJEGOVO oceno in zakleni klike.
+  const prikazNum = moja !== null ? moja : (povp !== null ? Math.round(povp) : 0);
+
+  cont.innerHTML = [1,2,3,4,5].map(i => {
+    const active = i <= prikazNum;
+    const cls = `star ${active?'active':''}`;
+    return `<span class="${cls}" data-v="${i}" onclick="oceniPot(${p.id},${i})">★</span>`;
+  }).join('');
+
+  // Hover efekt vedno aktiven
+  {
+    [...cont.querySelectorAll('.star')].forEach(st => {
+      st.addEventListener('mouseenter', () => {
+        const v = parseInt(st.dataset.v);
+        [...cont.querySelectorAll('.star')].forEach((s,i) => {
+          s.classList.toggle('active', i < v);
+        });
+      });
+    });
+    cont.addEventListener('mouseleave', () => {
+      const curNum = moja !== null ? moja : (povp !== null ? Math.round(povp) : 0);
+      [...cont.querySelectorAll('.star')].forEach((s,i) => {
+        s.classList.toggle('active', i < curNum);
+      });
+    });
+  }
+
+  const sum = document.getElementById('dp-rating-summary');
+  if (locked) {
+    sum.innerHTML = `tvoja ocena: <b>${moja}★</b> · povprečje <b>${povp}★</b> · ${ur.stevilo_ocen} ocen`;
+    sum.dataset.povp = povp;
+  } else if (ur.stevilo_ocen > 0) {
+    sum.innerHTML = `povprečje <b>${povp}★</b> · ${ur.stevilo_ocen} ocen`;
+    sum.dataset.povp = povp;
+  } else {
+    sum.textContent = 'še ni ocen — bodi prvi!';
+    sum.dataset.povp = '';
+  }
+
+  // ── USTREZNOST PREDLOGA ──
+  // Prikaži samo če imamo `ustreznost` info (kar pomeni, da je profil znan).
+  // Pri iskanju ali brez profila — sekcija ostane skrita.
+  const wrap = document.getElementById('dp-ustreznost-wrap');
+  if (!p.ustreznost || !zadnjiProfil || window._iskanjeMode) {
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = '';
+
+  const us = p.ustreznost;
+  const usPovp = us.povprecje;
+  const usMoja = us.moja_ocena;
+  const usLocked = !!us.ze_ocenjeno;
+  const usPrikaz = usMoja !== null ? usMoja : (usPovp !== null ? Math.round(usPovp) : 0);
+
+  const usCont = document.getElementById('dp-stars-ustr');
+  usCont.innerHTML = [1,2,3,4,5].map(i => {
+    const active = i <= usPrikaz;
+    return `<span class="star ${active?'active':''}" data-v="${i}" onclick="oceniUstreznost(${p.id},${i})">★</span>`;
+  }).join('');
+
+  {
+    [...usCont.querySelectorAll('.star')].forEach(st => {
+      st.addEventListener('mouseenter', () => {
+        const v = parseInt(st.dataset.v);
+        [...usCont.querySelectorAll('.star')].forEach((s,i) => {
+          s.classList.toggle('active', i < v);
+        });
+      });
+    });
+    usCont.addEventListener('mouseleave', () => {
+      const curNum = usMoja !== null ? usMoja : (usPovp !== null ? Math.round(usPovp) : 0);
+      [...usCont.querySelectorAll('.star')].forEach((s,i) => {
+        s.classList.toggle('active', i < curNum);
+      });
+    });
+  }
+
+  const usSum = document.getElementById('dp-rating-summary-ustr');
+  if (usLocked) {
+    usSum.innerHTML = `tvoja ocena: <b>${usMoja}★</b>${us.stevilo_ocen > 1 ? ` · povprečje <b>${usPovp}★</b> · ${us.stevilo_ocen} ocen` : ''}`;
+    usSum.dataset.povp = usPovp;
+  } else if (us.stevilo_ocen > 0) {
+    usSum.innerHTML = `povprečje <b>${usPovp}★</b> · ${us.stevilo_ocen} ocen`;
+    usSum.dataset.povp = usPovp;
+  } else {
+    usSum.textContent = 'še ni ocen — povej, ali ti je predlog ustrezal';
+    usSum.dataset.povp = '';
+  }
+}
+
+function zapriDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.getElementById('detail-panel').classList.remove('open');
+  trenutnaPotID = null;
+}
+
+// ─── OCENJEVANJE ──────────────────────────────────
+async function oceniPot(potId, ocena) {
+  if (!jePrijavljen()) {
+    prikaziToast('Za ocenjevanje se prijavi ', 3500);
+    setTimeout(() => openModal('login'), 600);
+    return;
+  }
+  try {
+    const body = {pot_id: potId, ocena: ocena, user_id: getUserId()};
+    if (zadnjiProfil) body.profil = zadnjiProfil;
+    const r = await fetchZID(API + '/ocena', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(body)
+    });
+    const d = await r.json();
+
+    if (d.uspeh) {
+      const bilo = d.podatki.bila_sprememba ? 'Ocena posodobljena' : 'Ocena shranjena';
+      prikaziToast(`${bilo}: ${ocena}★ (povprečje: ${d.podatki.povprecje}★)`);
+      await osveziPotJezikUI(potId);
+    } else {
+      prikaziToast('Napaka: ' + (d.napaka || 'neznana'));
+    }
+  } catch(e) {
+    prikaziToast('Strežnik ni dostopen');
+  }
+}
+
+async function oceniIzKartice(potId, ocena) {
+  await oceniPot(potId, ocena);
+}
+
+/**
+ * Oceni USTREZNOST predloga — koliko pot ustreza uporabnikovemu trenutnemu profilu.
+ * Vpliva samo na priporočila za isti profil (fitness + izkušnje + označenost + regija).
+ */
+async function oceniUstreznost(potId, ocena) {
+  if (!jePrijavljen()) {
+    prikaziToast('Za ocenjevanje se prijavi ', 3500);
+    setTimeout(() => openModal('login'), 600);
+    return;
+  }
+  if (!zadnjiProfil) {
+    prikaziToast('Najprej izpolni profil in pridobi priporočila');
+    return;
+  }
+  try {
+    const r = await fetchZID(API + '/ocena_ustreznosti', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        pot_id: potId,
+        ocena: ocena,
+        profil: zadnjiProfil,
+        user_id: getUserId()
+      })
+    });
+    const d = await r.json();
+
+    if (d.uspeh) {
+      const bilo = d.podatki.bila_sprememba ? 'Ustreznost posodobljena' : 'Ustreznost shranjena';
+      prikaziToast(`${bilo}: ${ocena}★ (povp. ${d.podatki.povprecje}★)`);
+      await osveziPotJezikUI(potId);
+    } else {
+      prikaziToast('Napaka: ' + (d.napaka || 'neznana'));
+    }
+  } catch(e) {
+    prikaziToast('Strežnik ni dostopen');
+  }
+}
+
+/**
+ * Po oceni osveži vse UI (detail panel + vse kartice s tem potId).
+ * Pazi: osveži SAMO tiste .card-rating sekcije (ocena poti / ustreznost) —
+ * ne jih pomešamo, ker ima kartica 2 .stars kontejnerja.
+ */
+async function osveziPotJezikUI(potId) {
+  try {
+    let url = API + '/pot/' + potId;
+    if (zadnjiProfil) {
+      const q = new URLSearchParams({
+        tezavnost:  zadnjiProfil.tezavnost,
+        gorovje:    zadnjiProfil.gorovje,
+        oznacenost: zadnjiProfil.oznacenost,
+      });
+      url += '?' + q.toString();
+    }
+    const r = await fetchZID(url);
+    const d = await r.json();
+    if (!d.uspeh) return;
+    const p = d.podatki.pot;
+
+    // Osveži detail panel, če je odprt na isti poti
+    if (trenutnaPotID === potId) {
+      narediZvezdiceDetail(p);
+    }
+
+    document.querySelectorAll('.trail-card').forEach(card => {
+      if (!((card.getAttribute('onclick')||'').includes(`odpriDetail(${potId})`))) return;
+
+      // (a) ocena POTI  —  .rating-row, ki NI .rating-row-ustr
+      const ur = p.user_rating || {};
+      const povp   = ur.povprecje;
+      const n      = ur.stevilo_ocen || 0;
+      const moja   = ur.moja_ocena;
+      const locked = !!ur.ze_ocenjeno;
+      const prikazNum = locked ? moja : (povp !== null ? Math.round(povp) : 0);
+
+      const potSekcija = card.querySelector('.rating-row:not(.rating-row-ustr)');
+      if (potSekcija) {
+        const ri = potSekcija.querySelector('.rating-info');
+        if (ri) {
+          if (locked)       ri.innerHTML = `<b>tvoja: ${moja}★</b> · povp. ${povp}★ (${n})`;
+          else if (n > 0)   ri.innerHTML = `<b>${povp}★</b> (${n})`;
+          else              ri.innerHTML = 'še ni ocen';
+        }
+        potSekcija.querySelectorAll('.stars .star').forEach((s, i) => {
+          s.classList.toggle('active', i < prikazNum);
+          s.classList.toggle('locked', locked);
+          if (locked) s.onclick = null;
+        });
+      }
+
+      // (b) ustreznost predloga — .rating-row-ustr
+      const us = p.ustreznost || null;
+      const usSekcija = card.querySelector('.rating-row-ustr');
+      if (us && usSekcija) {
+        const usPovp = us.povprecje;
+        const usN    = us.stevilo_ocen || 0;
+        const usMoja = us.moja_ocena;
+        const usLocked = !!us.ze_ocenjeno;
+        const usPrikaz = usLocked ? usMoja : (usPovp !== null ? Math.round(usPovp) : 0);
+
+        const ri2 = usSekcija.querySelector('.rating-info');
+        if (ri2) {
+          if (usLocked)       ri2.innerHTML = `<b>tvoja: ${usMoja}★</b>${usN > 1 ? ` · povp. ${usPovp}★ (${usN})` : ''}`;
+          else if (usN > 0)   ri2.innerHTML = `povp. <b>${usPovp}★</b> (${usN})`;
+          else                ri2.innerHTML = 'še ni ocen';
+        }
+        usSekcija.querySelectorAll('.stars .star').forEach((s, i) => {
+          s.classList.toggle('active', i < usPrikaz);
+          s.classList.toggle('locked', usLocked);
+          if (usLocked) s.onclick = null;
+        });
+      }
+    });
+  } catch(e) {}
+}
+
+// ─── STATISTIKE + GOOGLE CHARTS ───────────────────
+let chartsNalozeni = false;
+let chartsPodatki = null;   // shranjeni podatki za re-render ob menjavi teme
+
+function naloziStatistike() {
+  if (chartsNalozeni) return;
+  google.charts.load('current', {packages:['corechart','bar']});
+  google.charts.setOnLoadCallback(async () => {
+    try {
+      const r = await fetch(API + '/statistike');
+      const d = await r.json();
+      if (d.uspeh) {
+        const s = d.podatki.statistike;
+        chartsPodatki = s;
+        document.getElementById('s-skupaj').textContent  = s.skupaj_poti.toLocaleString();
+        document.getElementById('s-vrhi').textContent    = s.vrhi.toLocaleString();
+        document.getElementById('s-gorovja').textContent = s.gorovja;
+        document.getElementById('s-avg-hm').textContent  = s.avg_visina + 'm';
+        document.getElementById('s-avg-cas').textContent = formatCas(s.avg_cas_min);
+        document.getElementById('s-avg-pril').textContent= s.avg_priljub + '%';
+        narediCharte(s);
+      }
+    } catch(e) { narediDemoCharte(); }
+    chartsNalozeni = true;
+  });
+}
+
+const BARVE = ['#4E6253','#8E9B7E','#E2C276','#CEB98E','#9D865E','#B1B88A','#DDDBC4','#F6F8F0'];
+
+function narediCharte(s) {
+  // Theme-aware barve teksta — Google Charts ne posluša CSS spremenljivk
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const txtColor = dark ? '#e8eae3' : '#1e2118';
+  const fontName = 'Outfit, sans-serif';
+
+  const opts = {
+    backgroundColor:'transparent',
+    legend:{position:'none', textStyle:{color:txtColor, fontName:fontName, fontSize:12}},
+    chartArea:{left:120,top:20,right:20,bottom:30},
+    fontName: fontName,
+    fontSize:12,
+    hAxis: {textStyle:{color:txtColor, fontName:fontName}, gridlines:{color: dark ? '#2b3133' : '#DDDBC4'}, baselineColor:txtColor},
+    vAxis: {textStyle:{color:txtColor, fontName:fontName}, gridlines:{color: dark ? '#2b3133' : '#DDDBC4'}, baselineColor:txtColor},
+    titleTextStyle: {color:txtColor, fontName:fontName},
+    tooltip: {textStyle:{color:'#1e2118', fontName:fontName}},
+  };
+
+  const dZ = new google.visualization.DataTable();
+  dZ.addColumn('string','Zahtevnost');
+  dZ.addColumn('number','Poti');
+  dZ.addColumn({type:'string',role:'style'});
+  const zv = s.zahtevnosti;
+  [['Lahka',zv.lahka],['Delno zah.',zv.delno_zahtevna],['Zahtevna',zv.zahtevna],['Zelo zah.',zv.zelo_zahtevna],['Izjemna',zv.izjemno]]
+    .forEach(([l,v],i) => dZ.addRow([l,v,`color:${BARVE[i]}`]));
+  new google.visualization.BarChart(document.getElementById('chart-zahtevnost')).draw(dZ, {...opts});
+
+  const dO = new google.visualization.DataTable();
+  dO.addColumn('string','Tip'); dO.addColumn('number','Poti');
+  const oz = s.oznacenosti;
+  const ozSkupaj = (oz.oznacena||0) + (oz.mesano||0) + (oz.brezpotje||0);
+  dO.addRows([['Označena',oz.oznacena],['Delno označena',oz.mesano],['Brezpotje',oz.brezpotje]]);
+  new google.visualization.PieChart(document.getElementById('chart-oznacenost'))
+    .draw(dO, {...opts, colors:BARVE, pieHole:.4,
+               chartArea:{left:'5%', top:'5%', width:'90%', height:'90%'},
+               legend:{position:'none'},
+               pieSliceText:'none',
+               tooltip:{text:'both'}});
+
+  // Custom legenda z natančnimi % — Google Charts skrije % na majhnih slice-ih
+  const ozLeg = document.getElementById('oz-legenda');
+  if (ozLeg) {
+    const ozPodatki = [
+      {ime:'Označena', st:oz.oznacena||0, barva:BARVE[0]},
+      {ime:'Delno označena', st:oz.mesano||0, barva:BARVE[1]},
+      {ime:'Brezpotje', st:oz.brezpotje||0, barva:BARVE[2]},
+    ];
+    ozLeg.innerHTML = ozPodatki.map(o => {
+      const pct = ozSkupaj > 0 ? (o.st / ozSkupaj * 100).toFixed(1) : '0.0';
+      return `<span style="display:flex;align-items:center;gap:.35rem;color:${txtColor}">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${o.barva};flex-shrink:0"></span>
+        <span>${o.ime}</span>
+        <strong style="color:${o.barva}">${pct}%</strong>
+        <span style="opacity:.6">(${o.st.toLocaleString('sl')})</span>
+      </span>`;
+    }).join('');
+  }
+
+  naloziRegijskeStats(txtColor, fontName);
+}
+
+async function naloziRegijskeStats(txtColor, fontName) {
+  const dR = new google.visualization.DataTable();
+  dR.addColumn('string','Regija'); dR.addColumn('number','Poti');
+  dR.addColumn({type:'string',role:'style'});
+  [['Julijske Alpe',2800],['Kamn. Sav. Alpe',1650],['Karavanke',1100],['Goriško',520],
+   ['Polhograjsko',380],['Posavsko',290],['Pohorje',250],['Prekmurje',180]]
+  .forEach(([l,v],i) => dR.addRow([l,v,`color:${BARVE[i]}`]));
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  txtColor = txtColor || (dark ? '#e8eae3' : '#1e2118');
+  fontName = fontName || 'Outfit, sans-serif';
+  new google.visualization.BarChart(document.getElementById('chart-regije'))
+    .draw(dR, {
+      backgroundColor:'transparent',
+      legend:{position:'none'},
+      chartArea:{left:130,top:10,right:20,bottom:20},
+      fontName: fontName, fontSize:11,
+      hAxis: {textStyle:{color:txtColor, fontName:fontName}, gridlines:{color: dark ? '#2b3133' : '#DDDBC4'}, baselineColor:txtColor},
+      vAxis: {textStyle:{color:txtColor, fontName:fontName}, baselineColor:txtColor},
+    });
+}
+
+function narediDemoCharte() {
+  document.getElementById('s-skupaj').textContent  = '7.913';
+  document.getElementById('s-vrhi').textContent    = '482';
+  document.getElementById('s-gorovja').textContent = '8';
+  document.getElementById('s-avg-hm').textContent  = '842m';
+  document.getElementById('s-avg-cas').textContent = '2 h 36 min';
+  document.getElementById('s-avg-pril').textContent= '74%';
+  chartsPodatki = {
+    zahtevnosti:{lahka:6240,delno_zahtevna:290,zahtevna:1050,zelo_zahtevna:389,izjemno:47},
+    oznacenosti:{oznacena:5418,mesano:2206,brezpotje:269}
+  };
+  narediCharte(chartsPodatki);
+}
+
+// ─── AUTH ─────────────────────────────────────────
+function openModal(tab) {
+  document.getElementById('modal-overlay').classList.add('open');
+  switchTab(tab);
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+function switchTab(tab) {
+  document.getElementById('panel-register').style.display = tab==='register' ? 'block' : 'none';
+  document.getElementById('panel-login').style.display    = tab==='login'    ? 'block' : 'none';
+  document.getElementById('tab-register').classList.toggle('active', tab==='register');
+  document.getElementById('tab-login').classList.toggle('active',    tab==='login');
+}
+
+// Validacija koraka 1, prehod na korak 2 (kjer uporabnik vpiše pohodniški profil)
+function regNaprej() {
+  const ime       = document.getElementById('reg-ime').value.trim();
+  const uporabnik = document.getElementById('reg-uporabnik').value.trim().toLowerCase();
+  const pass      = document.getElementById('reg-pass').value;
+  if (!ime || !uporabnik || pass.length < 8) {
+    prikaziToast('Izpolni vsa polja (geslo min. 8 znakov)');
+    return;
+  }
+  if (uporabnik.length < 3) {
+    prikaziToast('Uporabniško ime mora imeti vsaj 3 znake');
+    return;
+  }
+  if (!/^[a-z0-9_.-]+$/i.test(uporabnik)) {
+    prikaziToast('Uporabniško ime sme vsebovati samo črke, števke, _ in -');
+    return;
+  }
+  // napolni regije v selectu (kopiraj iz glavnega forma)
+  const mainGorovje = document.getElementById('gorovje');
+  const regGorovje  = document.getElementById('reg-gorovje');
+  if (regGorovje && regGorovje.options.length === 1 && mainGorovje) {
+    [...mainGorovje.options].forEach(o => {
+      if (o.value !== 'vse') regGorovje.add(new Option(o.text, o.value));
+    });
+  }
+  document.getElementById('reg-step-1').style.display = 'none';
+  document.getElementById('reg-step-2').style.display = 'block';
+}
+
+function regNazaj() {
+  document.getElementById('reg-step-1').style.display = 'block';
+  document.getElementById('reg-step-2').style.display = 'none';
+}
+
+async function registracija() {
+  const ime       = document.getElementById('reg-ime').value.trim();
+  const uporabnik = document.getElementById('reg-uporabnik').value.trim().toLowerCase();
+  const pass      = document.getElementById('reg-pass').value;
+  const avatar    = document.querySelector('.avatar-opt.selected')?.dataset.av || '';
+  if (!ime || !uporabnik || pass.length < 8) { prikaziToast('Izpolni vsa polja (geslo min. 8 znakov)'); return; }
+
+  // pohodniški profil iz koraka 2
+  const profil = {
+    tezavnost:  parseInt(document.getElementById('reg-tezavnost').value),
+    oznacenost: document.getElementById('reg-oznacenost').value,
+    gorovje:    document.getElementById('reg-gorovje').value,
+  };
+
+  try {
+    const r = await fetch(API + '/registracija', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ime, uporabnik, geslo: pass, avatar, profil})
+    });
+    const d = await r.json();
+    if (r.status === 409) { prikaziToast('To uporabniško ime že obstaja, izberi drugo'); return; }
+    if (!d.uspeh) { prikaziToast('Napaka: ' + (d.napaka || 'neznana')); return; }
+
+    // Backend vrne user objekt brez gesla — shranimo sejo v localStorage
+    const user = d.podatki;
+    localStorage.setItem('grm_session', JSON.stringify(user));
+
+    posodobiNavUporabnik(user);
+    napolniFormIzProfila(profil);
+    closeModal();
+    regNazaj();
+    prikaziToast('Dobrodošel/a, ' + ime + '! Profil shranjen ✓', 3500);
+  } catch(e) {
+    prikaziToast('Strežnik ni dostopen');
+  }
+}
+
+/**
+ * Napolni glavni form s profilom (uporabljeno po registraciji in po kliku
+ * "Priporoči glede na moj profil").
+ */
+function napolniFormIzProfila(p) {
+  if (!p) return;
+  // Nov profil ima 'tezavnost'; star profil ima fitness+izkusnje, ki jih mappiram
+  let tez = p.tezavnost;
+  if (!tez && p.izkusnje) {
+    const mapping = {'zacetnik': 2, 'srednja': 4, 'zahtevni': 5, 'zelo_zahtevno': 6, 'alpinist': 8};
+    tez = mapping[p.izkusnje] || 4;
+  }
+  if (tez) {
+    const sel = document.getElementById('tezavnost');
+    if (sel) sel.value = String(tez);
+  }
+  if (p.oznacenost) document.getElementById('oznacenost').value = p.oznacenost;
+  if (p.gorovje) {
+    const sel = document.getElementById('gorovje');
+    for (const opt of sel.options) {
+      if (opt.value === p.gorovje || opt.value.toLowerCase().includes((p.gorovje||'').toLowerCase())) {
+        sel.value = opt.value; break;
+      }
+    }
+  }
+}
+
+async function prijava() {
+  const uporabnik = document.getElementById('log-uporabnik').value.trim().toLowerCase();
+  const pass      = document.getElementById('log-pass').value;
+  if (!uporabnik || !pass) { prikaziToast('Izpolni uporabniško ime in geslo'); return; }
+
+  try {
+    const r = await fetch(API + '/prijava', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({uporabnik, geslo: pass})
+    });
+    const d = await r.json();
+    if (r.status === 401) { prikaziToast('Napačno uporabniško ime ali geslo'); return; }
+    if (!d.uspeh) { prikaziToast('Napaka: ' + (d.napaka || 'neznana')); return; }
+
+    const user = d.podatki;
+    localStorage.setItem('grm_session', JSON.stringify(user));
+    posodobiNavUporabnik(user);
+    if (user.profil) napolniFormIzProfila(user.profil);
+    closeModal();
+    prikaziToast('Dobrodošel/a nazaj, ' + user.ime + '! ✓');
+  } catch(e) {
+    prikaziToast('Strežnik ni dostopen');
+  }
+}
+
+function posodobiNavUporabnik(user) {
+  const navUser = document.querySelector('.nav-user');
+  navUser.innerHTML = `
+    <button class="btn-nav btn-theme" id="btn-theme" onclick="preklopiTemo()" title="Preklopi temo" aria-label="Preklopi temo">
+      <span id="theme-icon"></span>
+    </button>
+    <span class="user-avatar-mini" onclick="navigate('profil')" title="Moj profil" style="cursor:pointer">${escapeHtml(user.avatar || (user.ime||'?').charAt(0).toUpperCase())}</span>
+    <span style="font-size:.82rem;font-weight:600;color:var(--oker);cursor:pointer" onclick="navigate('profil')" title="Moj profil">${escapeHtml(user.ime)}</span>
+    <button class="btn-nav btn-login" onclick="odjava()">Odjava</button>`;
+  osveziThemeIkono();
+
+  // Pokaži "Moj profil" link (desktop)
+  const profilLi = document.getElementById('nav-profil-li');
+  if (profilLi) profilLi.style.display = '';
+  const btnP = document.getElementById('btn-priporoci-profil');
+  if (btnP) btnP.style.display = '';
+
+  // Mobilni meni: posodobi avatar, pokaži Moj profil, skrij login/register, pokaži odjavo
+  const mobAvatar = document.getElementById('mob-menu-avatar');
+  if (mobAvatar) mobAvatar.textContent = user.avatar || (user.ime||'?').charAt(0).toUpperCase();
+  const mobIme = document.getElementById('mob-menu-ime');
+  if (mobIme) { mobIme.textContent = user.ime; mobIme.style.display = ''; }
+  const mobProfil = document.getElementById('mob-menu-profil-btn');
+  if (mobProfil) mobProfil.style.display = '';
+  const mobLogin = document.getElementById('mob-menu-login-btn');
+  if (mobLogin) mobLogin.style.display = 'none';
+  const mobReg = document.getElementById('mob-menu-register-btn');
+  if (mobReg) mobReg.style.display = 'none';
+  const mobOdjava = document.getElementById('mob-menu-odjava-btn');
+  if (mobOdjava) mobOdjava.style.display = '';
+
+  // Nastavi ime v profil naslovu
+  const profilIme = document.getElementById('profil-ime-naziv');
+  if (profilIme) profilIme.textContent = user.ime || '';
+
+  // Na mobilnem hero CTA: NE dodajamo Moj profil (tam so samo Priporoči pot, Statistike, Dark mode)
+}
+
+function odjava() {
+  localStorage.removeItem('grm_session');
+  location.reload();
+}
+
+function selectAvatar(el) {
+  document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ─── TOAST ────────────────────────────────────────
+function prikaziToast(msg, ms=2800) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+// ─── RESET FORM ───────────────────────────────────
+function resetForm() {
+  document.getElementById('tezavnost').value = '1';
+  document.getElementById('min_visina').value = 0;
+  document.getElementById('max_visina').value = 2500;
+  updateDual('visina');
+  document.getElementById('min_cas').value = 0;
+  document.getElementById('max_cas').value = 13;
+  updateDual('cas');
+  document.getElementById('oznacenost').value = 'vse';
+  document.getElementById('gorovje').value = 'vse';
+  document.getElementById('results-section').style.display = 'none';
+  zadnjiProfil = null;
+  prikazaneIds = [];
+}
+
+// ─── TEMA (light / dark) ──────────────────────────
+function osveziThemeIkono() {
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const ikona = dark ? '☀️' : '🌙';
+  ['theme-icon', 'hero-theme-icon'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = ikona;
+  });
+}
+
+function preklopiTemo() {
+  const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  const nova = cur === 'dark' ? 'light' : 'dark';
+  nastaviTemo(nova);
+}
+
+function nastaviTemo(ime) {
+  if (ime === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  try { localStorage.setItem('grm_theme', ime); } catch(e){}
+  osveziThemeIkono();
+  // Re-renderiraj charts če smo na stats view (drugače so napačne barve)
+  const statsView = document.getElementById('view-stats');
+  if (statsView && statsView.classList.contains('active') && chartsPodatki) {
+    narediCharte(chartsPodatki);
+  }
+}
+
+// ─── INIT ─────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Tema: iz localStorage, sicer iz OS preference
+  let tema = 'light';
+  try {
+    const shranjena = localStorage.getItem('grm_theme');
+    if (shranjena === 'dark' || shranjena === 'light') {
+      tema = shranjena;
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      tema = 'dark';
+    }
+  } catch(e){}
+  nastaviTemo(tema);
+
+  // Nastavi začetne vrednosti filtrov
+  document.getElementById('tezavnost').value = '1';   // Brez preference
+  document.getElementById('gorovje').value = 'vse';
+  document.getElementById('oznacenost').value = 'vse';
+  document.getElementById('min_visina').value = 0;
+  document.getElementById('max_visina').value = 2500;
+  document.getElementById('min_cas').value = 0;
+  document.getElementById('max_cas').value = 13;
+  updateDual('visina');
+  updateDual('cas');
+
+  naloziFiltre();
+  const sej = localStorage.getItem('grm_session');
+  if (sej) {
+    try { posodobiNavUporabnik(JSON.parse(sej)); } catch(e){}
+  }
+  if (typeof google !== 'undefined') {
+    google.charts.load('current', {packages:['corechart']});
+  }
+});
+</script>
+</body>
+</html>
