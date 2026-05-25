@@ -1,7 +1,7 @@
 GRM U HRIBE — Pohodniški priporočilni sistem z AI
 ==================================================
 Šolski projekt | 3. letnik računalništva | 2025/26
-Avtorja: Gasper Žnidar, Kukovec
+Avtorja: Žnidar, Kukovec
 
 STRUKTURA MAPE:
 ───────────────
